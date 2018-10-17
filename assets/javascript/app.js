@@ -1,17 +1,18 @@
 $(document).ready(function () {
     //add submit button for all the input
-    $("#submit-button").on("click", function () {
+    $("#submit-button").on("click", function (event) {
+        event.preventDefault();
         //create variable to store value of input
         var address = $("#address").val();
         console.log(address);
         //constructing a queryURL
-        var queryURL = "https://www.googleapis.com/civicinfo/v2/voterinfo?key=AIzaSyCgorCJdsPNqU81iGz5UnfM8hBiIL8zbm4&address=" + address;
-        console.log(queryURL);
+        var queryURLVoter = "https://www.googleapis.com/civicinfo/v2/voterinfo?key=AIzaSyCgorCJdsPNqU81iGz5UnfM8hBiIL8zbm4&address=" + address;
+        console.log(queryURLVoter);
         // setting up Ajax request
-        var settingsRep = {
+        var settingsVoter = {
             "async": true,
             "crossDomain": true,
-            "url": queryURL,
+            "url": queryURLVoter,
             "method": "GET",
             "headers": {
                 "cache-control": "no-cache",
@@ -19,15 +20,30 @@ $(document).ready(function () {
             }
         }
         //After data has been retrieved from then request then
-        $.ajax(settingsRep).then(function (responseRep) {
+        $.ajax(settingsVoter).then(function (responseVoter) {
+            console.log(responseVoter);
+        });
+
+        var queryURLRep = "https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyCgorCJdsPNqU81iGz5UnfM8hBiIL8zbm4&address=" + address;
+
+        var settingsRep = {
+            "async": true,
+            "crossDomain": true,
+            "url": queryURLRep,
+            "method": "GET",
+            "headers": {
+                "cache-control": "no-cache",
+                "Postman-Token": "12953752-7b5f-46b8-b586-ff93402fb08d"
+            }
+        }
+        $.ajax(settingsRep).done(function (responseRep) {
             console.log(responseRep);
         });
 
+        //remove all field after submission
+        $("#add-address").each(function () {
+            this.reset();
+        })
+
     })
-
-
-
-
-
-
 })
