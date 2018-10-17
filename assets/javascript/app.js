@@ -18,7 +18,6 @@ $(document).ready(function () {
                 "Postman-Token": "92b1dfde-589c-4106-83be-33f72b2de28c"
             }
         }
-
         //After data has been retrieved from then request then
         $.ajax(settings).then(function (response) {
             console.log(response);
