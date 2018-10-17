@@ -8,7 +8,7 @@ $(document).ready(function () {
         var queryURL = "https://www.googleapis.com/civicinfo/v2/voterinfo?key=AIzaSyCgorCJdsPNqU81iGz5UnfM8hBiIL8zbm4&address=" + address;
         console.log(queryURL);
         // setting up Ajax request
-        var settings = {
+        var settingsRep = {
             "async": true,
             "crossDomain": true,
             "url": queryURL,
@@ -19,9 +19,10 @@ $(document).ready(function () {
             }
         }
         //After data has been retrieved from then request then
-        $.ajax(settings).then(function (response) {
-            console.log(response);
+        $.ajax(settingsRep).then(function (responseRep) {
+            console.log(responseRep);
         });
+
     })
 
 
