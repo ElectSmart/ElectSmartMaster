@@ -91,10 +91,7 @@ $(document).ready(function () {
                 }
             })
         }
-        //remove all field after submission
-        $("#add-address").each(function () {
-            this.reset();
-        })
+    
     })
 
     //On click button for function to show current representatives
@@ -206,12 +203,7 @@ $(document).ready(function () {
                 // put the contest name on DOM
                 $("#APILanding").append(row);
             })
-        }
-
-        //remove all field after submission
-        $("#add-address").each(function () {
-            this.reset();
-        })      
+        }     
     })
     // Function to restart the game (restart button)
     $("button").click (function restart() {
