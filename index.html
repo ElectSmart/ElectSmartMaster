@@ -1,38 +1,80 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>VoteSmart</title>
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">;
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+      <!--add JQuery link-->
+    
+    
+  
 </head>
+
 <body>
     <div class="container">
-    <div class="jumbotron jumbotron-fluid">
-        <div class="container">
-        <h1 class="display-4, text-center">ElectSmart</h1>
-        <p class="lead, text-center">This November, your vote matters. Elect smart.</p>
-  </div>
-</div>
-    <div class="row">
-        <div class="col-md-6">
-            <input class="form-control" type="text" placeholder="Address">
-            <input class="form-control" type="text" placeholder="Party Pref">
+        <div class="jumbotron jumbotron-fluid">
+            <div class="container">
+                <h1 class="display-4, text-center">ElectSmart</h1>
+                <p class="lead, text-center">This November, your vote matters. Elect smart.</p>
+            </div>
+        </div>
+
+        <div class="card">
+                <div class="card-header">
+                  Election and Candidate Information
+                </div>
+                <div class="card-body">
+                  <p class="card-text">Enter your address to see elections near you, or to receive information on your state and federal representatives.</p>
+                  <br>
+
+                  <form id="add-address">
+                        <input class="form-control" type="text" placeholder="Address" id="address">
+                            <!--Created submit button (Duncan)-->
+                        <br>
+                            <div class="dropdown">
+                                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                      What do you want to know?
+                                    </button>
             
-        </div>
-        <div class="col-md-6">
-                <div class="card">
-                        <div class="card-body">
-                          Election Info:
-                          <span id="APILanding">
-                              This is where the API information will populate once queried.
-                          </span>
-                        </div>
-                      </div>
-        </div>
+                                    <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                        <button class="dropdown-item">What elections are coming up near me?</button>
+                                        <button class="dropdown-item">Who are my representatives?</a>
+                                    </div>
+            
+            
+                                </div>
+
+                    
+                    </form>
+
+
+                  
+
+
+
+                </div>
+              </div>
+               
+        
+        
     </div>
-</div>
+    <!--Add Javascript-->
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+    crossorigin="anonymous"></script>
+
     
+     <!-- Brett: Added reference to popper.js, necessary for functional UI elements-->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+    <script rel="text/javascript" src="assets/javascript/app.js"></script>
 </body>
+
+
+
+
 </html>
