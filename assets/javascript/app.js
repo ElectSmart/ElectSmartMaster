@@ -5,7 +5,7 @@ $(document).ready(function () {
         //create variable to store value of input
         var address = $("#address").val();
         console.log(address);
-        //constructing a queryURL
+        //constructing a queryURL for Voter info
         var queryURLVoter = "https://www.googleapis.com/civicinfo/v2/voterinfo?key=AIzaSyCgorCJdsPNqU81iGz5UnfM8hBiIL8zbm4&address=" + address;
         console.log(queryURLVoter);
         // setting up Ajax request
@@ -19,13 +19,15 @@ $(document).ready(function () {
                 "Postman-Token": "92b1dfde-589c-4106-83be-33f72b2de28c"
             }
         }
+        
         //After data has been retrieved from then request then
         $.ajax(settingsVoter).then(function (responseVoter) {
             console.log(responseVoter);
         });
 
+        //constructing queryURL for representatives info
         var queryURLRep = "https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyCgorCJdsPNqU81iGz5UnfM8hBiIL8zbm4&address=" + address;
-
+        // AJAX request for representative info
         var settingsRep = {
             "async": true,
             "crossDomain": true,
@@ -36,6 +38,8 @@ $(document).ready(function () {
                 "Postman-Token": "12953752-7b5f-46b8-b586-ff93402fb08d"
             }
         }
+
+        //After data has been retrieved from then request then
         $.ajax(settingsRep).done(function (responseRep) {
             console.log(responseRep);
         });
