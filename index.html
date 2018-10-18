@@ -7,59 +7,82 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>VoteSmart</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
-<<<<<<< HEAD
-    <!--add JQuery link-->
-=======
       <!--add JQuery link-->
       <link rel="stylesheet" href="assets/css/style.css">
     
->>>>>>> 0d915e8defc7d5ee7ee6acd2871395287e4a75d1
 </head>
 
 <body>
     <div class="container">
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
-                <!-- <h1 class="display-4, text-center">ElectSmart</h1>
-                <p class="lead, text-center">This November, your vote matters. Elect smart.</p> -->
+                <h1 class="display-4, text-center">ElectSmart</h1>
+                <p class="lead, text-center">This November, your vote matters. Elect smart.</p>
             </div>
         </div>
 
-        <div class="card">
-            <div class="card-header">
-                Election and Candidate Information
-            </div>
-            <div class="card-body">
-                <p class="card-text">Enter your address to see elections near you, or to receive information on your
-                    state and federal representatives.</p>
-                <br>
+    <br><br>
 
-                <form id="add-address">
+        <div class="accordion" id="accordionExample">
+            <div class="card">
+              <div class="card-header" id="headingOne">
+                <h5 class="mb-0">
+                  <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    Election and Representative Information
+                  </button>
+                </h5>
+              </div>
+          
+              <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body">
+                    Enter your address to see elections near you, or to receive information on your state and federal representatives.
+
+                    <form id="add-address">
+                            <input class="form-control" type="text" placeholder="Address" id="address">
+                            <!--Created submit button (Duncan)-->
+                            <br>
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    What do you want to know?
+                                </button>
+        
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                                    <button class="dropdown-item" id="election">What elections are coming up near me?</button>
+                                    <button class="dropdown-item" id="representatives">Who are my representatives?</a>
+                                </div>
+        
+        
+                            </div>
+        
+        
+                        </form>
+                </div>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-header" id="headingTwo">
+                <h5 class="mb-0">
+                  <button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Candidate News Search
+                  </button>
+                </h5>
+              </div>
+              <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body">
+
+                    Receive up-to-date news on a candidate or representative who matters to you.
+                    <br><br>
                     <input class="form-control" type="text" placeholder="Address" id="address">
-                    <!--Created submit button (Duncan)-->
                     <br>
-                    <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            What do you want to know?
-                        </button>
-
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                            <button class="dropdown-item" id="election">What elections are coming up near me?</button>
-                            <button class="dropdown-item" id="representatives">Who are my representatives?</a>
-                        </div>
-
-
-                    </div>
-
-
-                </form>
-
-
-
-
+                    <button type="button" class="btn btn-secondary" id="news">Search</button> 
+                
+                </div>
+              </div>
             </div>
-        </div>
+          </div>
+
+          <br><br><br><br>
 
 
 
