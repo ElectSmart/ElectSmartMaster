@@ -1,7 +1,14 @@
-body {
+/* body {
 background-image:url("../images/American\ Flag.jpg");
-opacity: .25;
-}
+opacity: .1;
+height: 100%;
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
+} */
 .jumbotron {
-background-image:url("../images/ElectSmart\ Logo.jpg")
+background-image:url("../images/ElectSmart\ Logo.jpg");
+background-position: center;
+background-repeat: no-repeat;
+background-size: cover;
 }
