@@ -1,3 +1,7 @@
 body {
+background-image:url("../images/American\ Flag.jpg");
+opacity: .25;
+}
+.jumbotron {
 background-image:url("../images/ElectSmart\ Logo.jpg")
 }
