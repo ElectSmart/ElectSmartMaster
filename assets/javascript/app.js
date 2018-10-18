@@ -72,7 +72,15 @@ $(document).ready(function () {
                         //create a column tag to display candidate names
                         var columnCandidate = $("<td>");
                         columnCandidate.addClass("candidate-name");
-                        columnCandidate.text(candidate.name)
+                        //console.log(columnCandidate);
+                        //create an a tag for candidate email
+                        var a = $("<a>").attr("href", "mailto:" + candidate.email);
+                        //console.log(candidate.email);
+                        //console.log (a);
+                        //put name of candidate in a tag
+                        a.text(candidate.name);
+                        //put a tag in column
+                        columnCandidate.append(a);
 
                         //create a row 
                         var tr = $("<tr>");
@@ -89,13 +97,13 @@ $(document).ready(function () {
                     // put the contest name on DOM
                     $("#APILanding").append(row);
                 }
-                
+
                 //show closest polling location
                 var polling = responseVoter.earlyVoteSites;
                 console.log(polling);
                 for (var k = 0; k < 1; k++) {
                     $("#polling-locations").html("<b>" + polling[k].address.locationName + ", " + polling[k].address.line1 + ", " + polling[k].address.city + ", " + polling[k].address.state + ", " + polling[k].address.zip + "</b>");
-                }   
+                }
             })
         }
 
@@ -130,7 +138,7 @@ $(document).ready(function () {
             }
 
             //After data has been retrieved from then request then
-            $.ajax(settingsRep).done(function (responseRep) {
+            $.ajax(settingsRep).then(function (responseRep) {
                 console.log(responseRep);
 
                 //show full address on HTML 
@@ -147,7 +155,7 @@ $(document).ready(function () {
 
                 //storing office of the representative info in variable
                 var resultsOffice = responseRep.offices;
-                console.log(resultsOffice);
+                //console.log(resultsOffice);
 
                 //looping through all the element of the offices array of AJAX data
                 for (var i = 0; i < resultsOffice.length; i++) {
@@ -186,12 +194,11 @@ $(document).ready(function () {
                             //console.log(nameindex);
                             // if nameindex and index are the same, display the name and party of the representative according to their office 
                             if (index === nameindex) {
-                                //console.log("fuck trump");
+                                console.log("fuck trump");
                                 //create a column tag to display candidate names
                                 var columnRepName = $("<td>");
                                 columnRepName.addClass("rep-name");
-                                columnRepName.text(resultsOfficialName[j].name)
-
+                                columnRepName.text(resultsOfficialName[j].name);
                                 //create a row 
                                 var tr = $("<tr>");
                                 tr.html("<i>" + resultsOfficialName[j].party + "</i>");
@@ -212,7 +219,7 @@ $(document).ready(function () {
             })
         }
     })
-    // Function to restart the game (restart button)
+    // Function to empty all results from input
     $("button").click(function restart() {
         $("#APILanding").empty();
         $("#election-table").empty();
