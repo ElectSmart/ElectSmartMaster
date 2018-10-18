@@ -8,11 +8,13 @@ fetch(req)
         console.log(response.json());
     })
 
-// News API call--keyword: "election"
+// News API call--keyword search
+var = searchTerm
+
 var settings = {
     "async": true,
     "crossDomain": true,
-    "url": "https://newsapi.org/v2/top-headlines?country=us&apiKey=c5c050c6a3af4b0580432afa35b8dcaa&description=election",
+    "url": "https://newsapi.org/v2/top-headlines?country=us&apiKey=c5c050c6a3af4b0580432afa35b8dcaa&description=" + searchTerm,
     "method": "GET",
     "headers": {
       "cache-control": "no-cache",
