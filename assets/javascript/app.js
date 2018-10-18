@@ -1,5 +1,5 @@
 $(document).ready(function () {
-    //add submit button for all the input
+    //On click button to show up coming elections
     $("#election").on("click", function (event) {
         event.preventDefault();
 
@@ -32,46 +32,85 @@ $(document).ready(function () {
             $.ajax(settingsVoter).then(function (responseVoter) {
                 console.log(responseVoter);
 
-                //storing data for voter request
+                //show full address on HTML 
+                $("#display-address").html(responseVoter.normalizedInput.line1 + ", " + responseVoter.normalizedInput.city + ", " + responseVoter.normalizedInput.state + ", " + responseVoter.normalizedInput.zip);
+
+                //storing contests data from voter request in a varaible
                 var resultsContest = responseVoter.contests;
                 console.log(resultsContest);
 
+
+
+                //create the head of the table
+                var headTR = $("<tr>");
+                var ElectionTH = $("<th>").attr("scope", "col");
+                ElectionTH.text("Election Contest");
+                var candidateTH = $("<th>").attr("scope", "col");
+                candidateTH.text("Candidates");
+                headTR.append(ElectionTH, candidateTH);
+                $("#election-table").prepend(headTR);
+
                 //looping through each result
                 for (var i = 0; i < resultsContest.length; i++) {
+
+
                     //put each element of contest Array in variable
                     var contest = resultsContest[i];
                     //pull contest name in variable 
                     var contestName = contest.office;
-                    //create a div tag with a class
-                    var rowContest = $("<div>");
-                    rowContest.addClass("contest-name");
-                    //put Contest name on html
-                    rowContest.html(contestName);
+                    //create a row tag with a class
+                    var row = $("<tr>");
+                    //create the first column which will display contest name
+                    var columnContest = $("<td>");
+                    columnContest.addClass("contest-name text-left");
+                    columnContest.text(contestName);
+                    //append the contest column to the row
+                    row.append(columnContest);
 
                     for (var j = 0; j < contest.candidates.length; j++) {
                         var candidate = contest.candidates[j];
-                        //create a div tag with a class 
-                        var rowCandidate = $("<div>");
-                        rowCandidate.addClass("candidate-name");
-                        //put candidate on html
-                        rowCandidate.html(candidate.name);
-                        //put candidate and contest names on API Landing
+                        //create a column tag to display candidate names
+                        var columnCandidate = $("<td>");
+                        columnCandidate.addClass("candidate-name");
+                        //console.log(columnCandidate);
+                        //create an a tag for candidate email
+                        var a = $("<a>").attr("href", "mailto:" + candidate.email);
+                        //console.log(candidate.email);
+                        //console.log (a);
+                        //put name of candidate in a tag
+                        a.text(candidate.name);
+                        //put a tag in column
+                        columnCandidate.append(a);
 
-                        $("#APILanding").prepend(rowCandidate);
+                        //create a row 
+                        var tr = $("<tr>");
+                        tr.html("<i>" + candidate.party + "</i>");
+                        columnCandidate.append(tr);
+
+                        //append the column candidate to the row
+                        row.append(columnCandidate);
+
+                        //put candidates' names on DOM
+                        $("#APILanding").append(row);
+
                     };
+                    // put the contest name on DOM
+                    $("#APILanding").append(row);
+                }
 
-                    $("#APILanding").prepend(rowContest);
+                //show closest polling location
+                var polling = responseVoter.earlyVoteSites;
+                console.log(polling);
+                for (var k = 0; k < 1; k++) {
+                    $("#polling-locations").html("<b>" + polling[k].address.locationName + ", " + polling[k].address.line1 + ", " + polling[k].address.city + ", " + polling[k].address.state + ", " + polling[k].address.zip + "</b>");
                 }
             })
         }
-        //remove all field after submission
-        $("#add-address").each(function () {
-            this.reset();
-        })
+
     })
 
-
-    $("#representative").on("click", function (event) {
+    //On click button for function to show current representatives
+    $("#representatives").on("click", function (event) {
         event.preventDefault();
 
         //create variable to store value of input
@@ -99,20 +138,91 @@ $(document).ready(function () {
             }
 
             //After data has been retrieved from then request then
-            $.ajax(settingsRep).done(function (responseRep) {
+            $.ajax(settingsRep).then(function (responseRep) {
                 console.log(responseRep);
 
+                //show full address on HTML 
+                $("#display-address").html(responseRep.normalizedInput.line1 + ", " + responseRep.normalizedInput.city + ", " + responseRep.normalizedInput.state + ", " + responseRep.normalizedInput.zip);
 
-                //storing data for representative info
-                var resultsRep = responseRep.data;
-            });
+                //create the head of the table
+                var headTR = $("<tr>");
+                var OfficeTH = $("<th>").attr("scope", "col");
+                OfficeTH.text("Office");
+                var NameTH = $("<th>").attr("scope", "col");
+                NameTH.text("Name of Representative");
+                headTR.append(OfficeTH, NameTH);
+                $("#election-table").prepend(headTR);
+
+                //storing office of the representative info in variable
+                var resultsOffice = responseRep.offices;
+                //console.log(resultsOffice);
+
+                //looping through all the element of the offices array of AJAX data
+                for (var i = 0; i < resultsOffice.length; i++) {
+                    //put each element of office Array in variable
+                    var office = resultsOffice[i];
+                    //console.log(office);
+
+                    //pull contest name in variable 
+                    var officeName = office.name;
+                    //create a row tag with a class
+                    var row = $("<tr>");
+                    //create the first column which will display contest name
+                    var columnOfficeName = $("<td>");
+                    columnOfficeName.addClass("office-name text-left");
+                    columnOfficeName.text(officeName);
+                    //append the contest column to the row
+                    row.append(columnOfficeName);
+
+                    //obtain officeIndex from official-indices from offices array
+                    var officeIndex = office.officialIndices;
+                    //this for loop will loop through all the elemet in the official-indices array under offices array
+                    for (var k = 0; k < officeIndex.length; k++) {
+                        officeindex = officeIndex[k];
+                        // store officeIndex in index variable as an integer
+                        var index = parseInt(officeindex);
+                        //console.log(index);
+
+
+                        //obtain information of officials from data requested from Ajax call
+                        var resultsOfficialName = responseRep.officials;
+                        //console.log(resultsOfficialName);
+                        //this forloop will loop through all the element in the officials array of the AJAX data
+                        for (var j = 0; j < resultsOfficialName.length; j++) {
+                            //store index of each element as an integer in a variable called nameindex
+                            var nameindex = resultsOfficialName.indexOf(resultsOfficialName[j]);
+                            //console.log(nameindex);
+                            // if nameindex and index are the same, display the name and party of the representative according to their office 
+                            if (index === nameindex) {
+                                console.log("fuck trump");
+                                //create a column tag to display candidate names
+                                var columnRepName = $("<td>");
+                                columnRepName.addClass("rep-name");
+                                columnRepName.text(resultsOfficialName[j].name);
+                                //create a row 
+                                var tr = $("<tr>");
+                                tr.html("<i>" + resultsOfficialName[j].party + "</i>");
+                                columnRepName.append(tr);
+
+                                //append the column candidate to the row
+                                row.append(columnRepName);
+
+                                //put candidates' names on DOM
+                                $("#APILanding").append(row);
+
+                            }
+                        }
+                    }
+                }
+                // put the contest name on DOM
+                $("#APILanding").append(row);
+            })
         }
-
-        //remove all field after submission
-        $("#add-address").each(function () {
-            this.reset();
-        })
-
-
     })
+    // Function to empty all results from input
+    $("button").click(function restart() {
+        $("#APILanding").empty();
+        $("#election-table").empty();
+        $("#polling-locations").empty();
+    });
 })
