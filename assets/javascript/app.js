@@ -89,9 +89,16 @@ $(document).ready(function () {
                     // put the contest name on DOM
                     $("#APILanding").append(row);
                 }
+                
+                //show closest polling location
+                var polling = responseVoter.earlyVoteSites;
+                console.log(polling);
+                for (var k = 0; k < 1; k++) {
+                    $("#polling-locations").html("<b>" + polling[k].address.locationName + ", " + polling[k].address.line1 + ", " + polling[k].address.city + ", " + polling[k].address.state + ", " + polling[k].address.zip + "</b>");
+                }   
             })
         }
-    
+
     })
 
     //On click button for function to show current representatives
@@ -166,9 +173,9 @@ $(document).ready(function () {
                         officeindex = officeIndex[k];
                         // store officeIndex in index variable as an integer
                         var index = parseInt(officeindex);
-                        console.log(index);
-                        
-                        
+                        //console.log(index);
+
+
                         //obtain information of officials from data requested from Ajax call
                         var resultsOfficialName = responseRep.officials;
                         //console.log(resultsOfficialName);
@@ -176,7 +183,7 @@ $(document).ready(function () {
                         for (var j = 0; j < resultsOfficialName.length; j++) {
                             //store index of each element as an integer in a variable called nameindex
                             var nameindex = resultsOfficialName.indexOf(resultsOfficialName[j]);
-                            console.log(nameindex);
+                            //console.log(nameindex);
                             // if nameindex and index are the same, display the name and party of the representative according to their office 
                             if (index === nameindex) {
                                 //console.log("fuck trump");
@@ -203,11 +210,12 @@ $(document).ready(function () {
                 // put the contest name on DOM
                 $("#APILanding").append(row);
             })
-        }     
+        }
     })
     // Function to restart the game (restart button)
-    $("button").click (function restart() {
+    $("button").click(function restart() {
         $("#APILanding").empty();
         $("#election-table").empty();
+        $("#polling-locations").empty();
     });
 })
