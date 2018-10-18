@@ -19,11 +19,13 @@ $(document).ready(function () {
                 "Postman-Token": "92b1dfde-589c-4106-83be-33f72b2de28c"
             }
         }
-        
+
         //After data has been retrieved from then request then
         $.ajax(settingsVoter).then(function (responseVoter) {
             console.log(responseVoter);
         });
+        //storing data for voter request
+        var resultsVoter = responseVoter.data;
 
         //constructing queryURL for representatives info
         var queryURLRep = "https://www.googleapis.com/civicinfo/v2/representatives?key=AIzaSyCgorCJdsPNqU81iGz5UnfM8hBiIL8zbm4&address=" + address;
@@ -43,6 +45,9 @@ $(document).ready(function () {
         $.ajax(settingsRep).done(function (responseRep) {
             console.log(responseRep);
         });
+
+        //storing data for representative info
+        var resultsRep = responseRep.data;
 
         //remove all field after submission
         $("#add-address").each(function () {
