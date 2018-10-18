@@ -10,5 +10,6 @@ background-size: cover;
 background-image:url("../images/ElectSmart\ Logo.jpg");
 background-position: center;
 background-repeat: no-repeat;
-background-size: cover;
+background-color: red;
+/* background-size: cover; */
 }
