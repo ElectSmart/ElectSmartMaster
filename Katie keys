@@ -5,3 +5,7 @@ https://www.googleapis.com/civicinfo/v2
 News API
 https://newsapi.org/ 
     c5c050c6a3af4b0580432afa35b8dcaa 
+
+NY Times
+https://api.nytimes.com/svc/search/v2/articlesearch.json? 
+    05f09121a0404693b30351c859dc17a5
