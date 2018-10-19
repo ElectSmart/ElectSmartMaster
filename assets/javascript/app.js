@@ -116,26 +116,38 @@ $(document).ready(function () {
                 //=================This code right here is to show the nearest voting location===========================
                 // Some locations have votesites information and some does not. So this line of codes only work for certain locations
                 var polling = responseVoter.earlyVoteSites;
-                if (typeof (polling) === "undefined") {
-                    //console.log("undefined");
-                    polling = responseVoter.pollingLocations;
-                    //console.log(polling);
+                var polling1 = responseVoter.pollingLocations;
+                if (typeof (polling) === "undefined" && polling1.length > 0) {
+                    console.log("polling1");
+                    for (var k = 0; k < polling1.length; k++) {
+                        polling1 = polling1[k];
+                        $("#polling-location").html(polling1.address.locationName + ", " + polling1.address.line1 +
+                            ", " + polling1.address.city + ", " + polling1.address.state + ", " + polling1.address.zip);
+                        $("#polling-hours").html(polling1.pollingHours);
+                    }
+                }
+                if (typeof (polling1) === "undefined" && polling.length > 0) {
                     for (var k = 0; k < polling.length; k++) {
                         polling = polling[k];
-                        $("#polling-locations").html("<b>" + polling.address.locationName + ", " + polling.address.line1 +
-                            ", " + polling.address.city + ", " + polling.address.state + ", " + polling.address.zip + "</b>");
-                        $("#polling-hours").html("<i>" + polling.pollingHours + "</i>");
+                        $("#vote-location").html(polling.address.locationName + ", " + polling.address.line1 +
+                            ", " + polling.address.city + ", " + polling.address.state + ", " + polling.address.zip);
+                        $("#votesite-hours").html(polling.pollingHours);
                     }
                 }
                 else {
+                    for (var k = 0; k < polling1.length; k++) {
+                        polling1 = polling1[k];
+                        $("#polling-location").html(polling1.address.locationName + ", " + polling1.address.line1 +
+                            ", " + polling1.address.city + ", " + polling1.address.state + ", " + polling1.address.zip);
+                        $("#polling-hours").html(polling1.pollingHours);
+                    }
                     for (var k = 0; k < polling.length; k++) {
                         polling = polling[k];
-                        $("#polling-locations").html("<b>" + polling.address.locationName + ", " + polling.address.line1 +
-                            ", " + polling.address.city + ", " + polling.address.state + ", " + polling.address.zip + "</b>");
-                        $("#polling-hours").html("<i>" + polling.pollingHours + "</i>");
+                        $("#vote-location").html(polling.address.locationName + ", " + polling.address.line1 +
+                            ", " + polling.address.city + ", " + polling.address.state + ", " + polling.address.zip);
+                        $("#votesite-hours").html(polling.pollingHours);
                     }
                 }
-                //=================================================      
 
             })
         }
@@ -237,7 +249,7 @@ $(document).ready(function () {
                                 // console.log(repUrl);
                                 if (typeof (repUrl) === "undefined") {
                                     columnRepName.text(resultsOfficialName[j].name);
-                                    
+
                                 }
                                 else {
                                     for (var l = 0; l < 1; l++) {
@@ -274,7 +286,9 @@ $(document).ready(function () {
     $("button").click(function restart() {
         $("#APILanding").empty();
         $("#election-table").empty();
-        $("#polling-locations").empty();
+        $("#polling-location").empty();
         $("#polling-hours").empty();
+        $("#vote-location").empty();
+        $("#votesites-hours").empty();
     });
 })
