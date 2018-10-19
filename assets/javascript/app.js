@@ -231,26 +231,26 @@ $(document).ready(function () {
                                 var columnRepName = $("<td>");
                                 columnRepName.addClass("rep-name");
 
+
                                 //--------------The code here is to add URL link to the name of representative------------------
                                 var repUrl = resultsOfficialName[j].urls;
                                 // console.log(repUrl);
                                 if (typeof (repUrl) === "undefined") {
                                     columnRepName.text(resultsOfficialName[j].name);
-                                    //console.log("oops");
+                                    
                                 }
                                 else {
-                                    for (var k = 0; k < 1; k++) {
-                                        repUrl = repUrl[k];
+                                    for (var l = 0; l < 1; l++) {
                                         //console.log(repUrl);
                                         //create an a tag for URL with href attribute of the url
-                                        var aURL = $("<a>").attr("href", repUrl).attr("target", "_blank");
+                                        var aURL = $("<a>").attr("href", repUrl[l]).attr("target", "_blank");
                                         aURL.text(resultsOfficialName[j].name);
                                         // append the a tag to the column of the RepName
                                         columnRepName.append(aURL);
+
                                     }
                                 }
                                 //---------------------------------------------------------------------------------
-
                                 //create a row 
                                 var tr = $("<tr>");
                                 tr.html("<i>" + resultsOfficialName[j].party + "</i>");
