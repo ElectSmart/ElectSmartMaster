@@ -35,12 +35,9 @@ $(document).ready(function () {
                 //show full address on HTML 
                 $("#display-address").html(responseVoter.normalizedInput.line1 + ", " + responseVoter.normalizedInput.city + ", " + responseVoter.normalizedInput.state + ", " + responseVoter.normalizedInput.zip);
 
-
                 //storing contests data from voter request in a varaible
                 var resultsContest = responseVoter.contests;
                 console.log(resultsContest);
-
-
 
                 //create the head of the table
                 var headTR = $("<tr>");
@@ -91,34 +88,25 @@ $(document).ready(function () {
 
                         //put candidates' names on DOM
                         $("#APILanding").append(row);
-                        console.log("fuck trump");
-
+                        //console.log("fuck trump");
+                        //============================================
+                        // NEED TO LOOK AT CODE within these two lines. 
+                        //trying to do so that some address will take the information from earlyVoteSites and others from pollinglocations
+                        var polling = responseVoter.earlyVoteSites;
+                        //console.log(polling);
+                        //console.log("WTF");
+                        if (polling.length > 0) {
+                            for (var k = 0; k < polling.length; k++) {
+                                polling = polling[k];
+                                $("#polling-locations").html("<b>" + polling.address.locationName + ", " + polling.address.line1 +
+                                    ", " + polling.address.city + ", " + polling.address.state + ", " + polling.address.zip + "</b>");
+                            }
+                        }
+                        //=================================================    
                     };
                 }
-                //============================================
-                // NEED TO LOOK AT CODE within these two lines. 
-                    //trying to do so that some address will take the information from earlyVoteSites and others from pollinglocations
-                //var polling1 = responseVoter.earlyVoteSites;
-                var polling2 = responseVoter.pollingLocations;
-                console.log("WTF");
-                console.log(polling2);
-                if (polling2.length >0) {
-                    for (var k = 0; k < polling2.length; k++) {
-                        polling2 = polling2[k];
-                        $("#polling-locations").html("<b>" + polling2.address.locationName + ", " + polling2.address.line1 + 
-                        ", " + polling2.address.city + ", " + polling2.address.state + ", " + polling2.address.zip + "</b>");
-                    }
-                    //for (var k = 0; k < polling1.length; k++) {
-                      //  polling1 = polling1[k];
-                        //$("#polling-locations").html("<b>" + polling1.address.locationName + ", " + polling1.address.line1 + 
-                        //", " + polling1.address.city + ", " + polling1.address.state + ", " + polling1.address.zip + "</b>");
-                   // }
-                    
-                }
-                //=================================================
             })
         }
-
     })
 
     //On click button for function to show current representatives
@@ -233,7 +221,7 @@ $(document).ready(function () {
                         }
                     }
                 }
-                
+
             })
         }
     })
