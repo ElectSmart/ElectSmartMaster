@@ -99,7 +99,7 @@ $(document).ready(function () {
                         //create row for Referendum
                         var rowRef = $("<tr>");
                         //create first column for the Referendum
-                        var columnRef = $("<td>").text(contestType);
+                        var columnRef = $("<td>").html("<b>"+contestType+"</b>");
                         //append column Ref to rowRef
                         rowRef.append(columnRef);
                         //create column to get referendum question
@@ -114,18 +114,21 @@ $(document).ready(function () {
                     }
                 }
                 //=================This code right here is to show the nearest voting location===========================
-                // Some locations have votesites information and some does not. So this line of codes only work for certain locations
+                // put all information about early vote sites in a variable
                 var polling = responseVoter.earlyVoteSites;
+                // put all information about polling location in a variable
                 var polling1 = responseVoter.pollingLocations;
+                // if early votesite is not available, the fill in polling location
                 if (typeof (polling) === "undefined" && polling1.length > 0) {
                     console.log("polling1");
-                    for (var k = 0; k < polling1.length; k++) {
-                        polling1 = polling1[k];
+                    for (var l = 0; l < polling1.length; l++) {
+                        polling1 = polling1[l];
                         $("#polling-location").html(polling1.address.locationName + ", " + polling1.address.line1 +
                             ", " + polling1.address.city + ", " + polling1.address.state + ", " + polling1.address.zip);
                         $("#polling-hours").html(polling1.pollingHours);
                     }
                 }
+                // if polling location isn't available, then fill in early votesites
                 if (typeof (polling1) === "undefined" && polling.length > 0) {
                     for (var k = 0; k < polling.length; k++) {
                         polling = polling[k];
@@ -134,9 +137,11 @@ $(document).ready(function () {
                         $("#votesite-hours").html(polling.pollingHours);
                     }
                 }
-                else {
-                    for (var k = 0; k < polling1.length; k++) {
-                        polling1 = polling1[k];
+
+                // if both available then fill in both
+                if(polling.length > 0 && polling1.length > 0) {
+                    for (var l = 0; l < polling1.length; l++) {
+                        polling1 = polling1[l];
                         $("#polling-location").html(polling1.address.locationName + ", " + polling1.address.line1 +
                             ", " + polling1.address.city + ", " + polling1.address.state + ", " + polling1.address.zip);
                         $("#polling-hours").html(polling1.pollingHours);
@@ -148,7 +153,6 @@ $(document).ready(function () {
                         $("#votesite-hours").html(polling.pollingHours);
                     }
                 }
-
             })
         }
     })
@@ -245,12 +249,16 @@ $(document).ready(function () {
 
 
                                 //--------------The code here is to add URL link to the name of representative------------------
+                                //--some representative don't have URL--
+                                //store all url in repUrl
                                 var repUrl = resultsOfficialName[j].urls;
                                 // console.log(repUrl);
+                                // if the representative doesn't have a website, print our her/his name
                                 if (typeof (repUrl) === "undefined") {
                                     columnRepName.text(resultsOfficialName[j].name);
 
                                 }
+                                // if they do then
                                 else {
                                     for (var l = 0; l < 1; l++) {
                                         //console.log(repUrl);
