@@ -116,11 +116,15 @@ $(document).ready(function () {
                 //============================================
                 // Some locations have votesites information and some does not. So this line of codes only work for certain locations
                 var polling = responseVoter.earlyVoteSites;
-                //console.log(polling);
-                for (var k = 0; k < polling.length; k++) {
-                    polling = polling[k];
-                    $("#polling-locations").html("<b>" + polling.address.locationName + ", " + polling.address.line1 +
-                        ", " + polling.address.city + ", " + polling.address.state + ", " + polling.address.zip + "</b>");
+                if (typeof (polling) === "undefined") {
+                    console.log("undefined");
+                }
+                else {
+                    for (var k = 0; k < polling.length; k++) {
+                        polling = polling[k];
+                        $("#polling-locations").html("<b>" + polling.address.locationName + ", " + polling.address.line1 +
+                            ", " + polling.address.city + ", " + polling.address.state + ", " + polling.address.zip + "</b>");
+                    }
                 }
                 //=================================================      
 
@@ -214,25 +218,30 @@ $(document).ready(function () {
                             //console.log(nameindex);
                             // if nameindex and index are the same, display the name and party of the representative according to their office 
                             if (index === nameindex) {
-                                console.log("fuck trump");
+                                //console.log("fuck trump");
                                 //create a column tag to display candidate names
                                 var columnRepName = $("<td>");
                                 columnRepName.addClass("rep-name");
-                                columnRepName.text(resultsOfficialName[j].name);
 
-                                //--------------Code needs to be figured out------------------
-                                //var repUrl = resultsOfficialName.urls;
-                                //console.log(repUrl);
-                                //if (repUrl.length > 0) {
-                                //for (var k = 0; k < 1; k++) {
-                                //repUrl = repUrl[k];
-                                //console.log(repUrl);
-                                //}
-                                //}
-                                //else {
-                                //return;
-                                //}
-                                //-------------------------------------------------------------
+                                //--------------The code here is to add URL link to the name of representative------------------
+                                var repUrl = resultsOfficialName[j].urls;
+                                // console.log(repUrl);
+                                if (typeof (repUrl) === "undefined") {
+                                    columnRepName.text(resultsOfficialName[j].name);
+                                    //console.log("oops");
+                                }
+                                else {
+                                    for (var k = 0; k < 1; k++) {
+                                        repUrl = repUrl[k];
+                                        //console.log(repUrl);
+                                        //create an a tag for URL with href attribute of the url
+                                        var aURL = $("<a>").attr("href", repUrl).attr("target", "");
+                                        aURL.text(resultsOfficialName[j].name);
+                                        // append the a tag to the column of the RepName
+                                        columnRepName.append(aURL);
+                                    }
+                                }
+                                //---------------------------------------------------------------------------------
 
                                 //create a row 
                                 var tr = $("<tr>");
