@@ -50,7 +50,7 @@ $(document).ready(function () {
 
                 for (var i = 0; i < resultsContest.length; i++) {
                     var contestType = resultsContest[i].type;
-                    console.log(contestType);
+                    //console.log(contestType);
                     if (contestType === "General") {
                         //console.log("general");
                         //put each element of contest Array in variable
@@ -113,17 +113,26 @@ $(document).ready(function () {
                         $("#APILanding").append(rowRef);
                     }
                 }
-                //============================================
+                //=================This code right here is to show the nearest voting location===========================
                 // Some locations have votesites information and some does not. So this line of codes only work for certain locations
                 var polling = responseVoter.earlyVoteSites;
                 if (typeof (polling) === "undefined") {
-                    console.log("undefined");
+                    //console.log("undefined");
+                    polling = responseVoter.pollingLocations;
+                    console.log(polling);
+                    for (var k = 0; k < polling.length; k++) {
+                        polling = polling[k];
+                        $("#polling-locations").html("<b>" + polling.address.locationName + ", " + polling.address.line1 +
+                            ", " + polling.address.city + ", " + polling.address.state + ", " + polling.address.zip + "</b>");
+                        $("#polling-hours").html("<i>" + polling.pollingHours + "</i>");
+                    }
                 }
                 else {
                     for (var k = 0; k < polling.length; k++) {
                         polling = polling[k];
                         $("#polling-locations").html("<b>" + polling.address.locationName + ", " + polling.address.line1 +
                             ", " + polling.address.city + ", " + polling.address.state + ", " + polling.address.zip + "</b>");
+                        $("#polling-hours").html("<i>" + polling.pollingHours + "</i>");
                     }
                 }
                 //=================================================      
@@ -235,7 +244,7 @@ $(document).ready(function () {
                                         repUrl = repUrl[k];
                                         //console.log(repUrl);
                                         //create an a tag for URL with href attribute of the url
-                                        var aURL = $("<a>").attr("href", repUrl).attr("target", "");
+                                        var aURL = $("<a>").attr("href", repUrl).attr("target", "_blank");
                                         aURL.text(resultsOfficialName[j].name);
                                         // append the a tag to the column of the RepName
                                         columnRepName.append(aURL);
