@@ -119,7 +119,7 @@ $(document).ready(function () {
                 if (typeof (polling) === "undefined") {
                     //console.log("undefined");
                     polling = responseVoter.pollingLocations;
-                    console.log(polling);
+                    //console.log(polling);
                     for (var k = 0; k < polling.length; k++) {
                         polling = polling[k];
                         $("#polling-locations").html("<b>" + polling.address.locationName + ", " + polling.address.line1 +
@@ -136,7 +136,6 @@ $(document).ready(function () {
                     }
                 }
                 //=================================================      
-
 
             })
         }
@@ -276,5 +275,6 @@ $(document).ready(function () {
         $("#APILanding").empty();
         $("#election-table").empty();
         $("#polling-locations").empty();
+        $("#polling-hours").empty();
     });
 })
