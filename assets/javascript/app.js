@@ -31,9 +31,12 @@ $(document).ready(function () {
             //After data has been retrieved from then request then
             $.ajax(settingsVoter).then(function (responseVoter) {
                 console.log(responseVoter);
-
+                
                 //show full address on HTML 
-                $("#display-address").html(responseVoter.normalizedInput.line1 + ", " + responseVoter.normalizedInput.city + ", " + responseVoter.normalizedInput.state + ", " + responseVoter.normalizedInput.zip);
+                var div = $("<div>").html("<b> Search Address: </b>");
+                var searchAddress = responseVoter.normalizedInput.line1 + ", " + responseVoter.normalizedInput.city + ", " + responseVoter.normalizedInput.state + ", " + responseVoter.normalizedInput.zip;
+                div.append(searchAddress);
+                $("#display-address").append(div);
 
                 //create the head of the table
                 var headTR = $("<tr>");
@@ -123,18 +126,30 @@ $(document).ready(function () {
                     console.log("polling1");
                     for (var l = 0; l < polling1.length; l++) {
                         polling1 = polling1[l];
-                        $("#polling-location").html(polling1.address.locationName + ", " + polling1.address.line1 +
-                            ", " + polling1.address.city + ", " + polling1.address.state + ", " + polling1.address.zip);
-                        $("#polling-hours").html(polling1.pollingHours);
+                        var pollingLocation = polling1.address.locationName + ", " + polling1.address.line1 +
+                            ", " + polling1.address.city + ", " + polling1.address.state + ", " + polling1.address.zip;
+                        var pollingHours = polling1.pollingHours;
+                        var divPLocation = $("<div>").html("<b>Nearest Polling Location: </b>");
+                        var divPHours = $("<div>").html("<b><i>Polling Hours: </i></b>");
+                        divPLocation.append(pollingLocation);
+                        divPHours.append(pollingHours);
+                        $("#polling-location").append(divPLocation);
+                        $("#polling-hours").append(divPHours);
                     }
                 }
                 // if polling location isn't available, then fill in early votesites
                 if (typeof (polling1) === "undefined" && polling.length > 0) {
                     for (var k = 0; k < polling.length; k++) {
                         polling = polling[k];
-                        $("#vote-location").html(polling.address.locationName + ", " + polling.address.line1 +
-                            ", " + polling.address.city + ", " + polling.address.state + ", " + polling.address.zip);
-                        $("#votesite-hours").html(polling.pollingHours);
+                        var voteSiteLocation = polling.address.locationName + ", " + polling.address.line1 +
+                            ", " + polling.address.city + ", " + polling.address.state + ", " + polling.address.zip;
+                        var voteSiteHours = polling.pollingHours;
+                        var divPLocation = $("<div>").html("<b>Nearest Early Voting Location: </b>");
+                        var divPHours = $("<div>").html("<b><i>Polling Hours: </i></b>");
+                        divPLocation.append(voteSiteLocation);
+                        divPHours.append(voteSiteHours);
+                        $("#vote-location").append(divPLocation);
+                        $("#votesite-hours").append(divPHours);
                     }
                 }
 
@@ -142,16 +157,29 @@ $(document).ready(function () {
                 if(polling.length > 0 && polling1.length > 0) {
                     for (var l = 0; l < polling1.length; l++) {
                         polling1 = polling1[l];
-                        $("#polling-location").html(polling1.address.locationName + ", " + polling1.address.line1 +
-                            ", " + polling1.address.city + ", " + polling1.address.state + ", " + polling1.address.zip);
-                        $("#polling-hours").html(polling1.pollingHours);
+                        var pollingLocation = polling1.address.locationName + ", " + polling1.address.line1 +
+                            ", " + polling1.address.city + ", " + polling1.address.state + ", " + polling1.address.zip;
+                        var pollingHours = polling1.pollingHours;
+                        var divPLocation = $("<div>").html("<b>Nearest Polling Location: </b>");
+                        var divPHours = $("<div>").html("<b><i>Polling Hours: </i></b>");
+                        divPLocation.append(pollingLocation);
+                        divPHours.append(pollingHours);
+                        $("#polling-location").append(divPLocation);
+                        $("#polling-hours").append(divPHours);
                     }
                     for (var k = 0; k < polling.length; k++) {
                         polling = polling[k];
-                        $("#vote-location").html(polling.address.locationName + ", " + polling.address.line1 +
-                            ", " + polling.address.city + ", " + polling.address.state + ", " + polling.address.zip);
-                        $("#votesite-hours").html(polling.pollingHours);
+                        var voteSiteLocation = polling.address.locationName + ", " + polling.address.line1 +
+                            ", " + polling.address.city + ", " + polling.address.state + ", " + polling.address.zip;
+                        var voteSiteHours = polling.pollingHours;
+                        var divPLocation = $("<div>").html("<b>Nearest Early Voting Location: </b>");
+                        var divPHours = $("<div>").html("<b><i>Polling Hours: </i></b>");
+                        divPLocation.append(voteSiteLocation);
+                        divPHours.append(voteSiteHours);
+                        $("#vote-location").append(divPLocation);
+                        $("#votesite-hours").append(divPHours);
                     }
+                    
                 }
             })
         }
@@ -190,7 +218,11 @@ $(document).ready(function () {
                 console.log(responseRep);
 
                 //show full address on HTML 
-                $("#display-address").html(responseRep.normalizedInput.line1 + ", " + responseRep.normalizedInput.city + ", " + responseRep.normalizedInput.state + ", " + responseRep.normalizedInput.zip);
+                var div = $("<div>").html("<b> Search Address: </b>");
+                var searchAddress = responseRep.normalizedInput.line1 + ", " + responseRep.normalizedInput.city + ", " 
+                + responseRep.normalizedInput.state + ", " + responseRep.normalizedInput.zip;
+                div.append(searchAddress);
+                $("#display-address").append(div);
 
                 //create the head of the table
                 var headTR = $("<tr>");
@@ -293,10 +325,11 @@ $(document).ready(function () {
     // Function to empty all results from input
     $("button").click(function restart() {
         $("#APILanding").empty();
+        $("#display-address").empty();
         $("#election-table").empty();
         $("#polling-location").empty();
         $("#polling-hours").empty();
         $("#vote-location").empty();
-        $("#votesites-hours").empty();
+        $("#votesite-hours").empty();
     });
 })
