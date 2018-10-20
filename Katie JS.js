@@ -30,14 +30,14 @@ var settings = {
 
 // Initialize Firebase
 var config = {
-    apiKey: "AIzaSyBTq74naeMGcbolfwl1KMijbmbJ5hO0chE",
-    authDomain: "elect-smart-1539655478398.firebaseapp.com",
-    databaseURL: "https://elect-smart-1539655478398.firebaseio.com",
-    projectId: "elect-smart-1539655478398",
-    storageBucket: "",
-    messagingSenderId: "577385688896"
-  };
-  firebase.initializeApp(config);
+  apiKey: "AIzaSyBTq74naeMGcbolfwl1KMijbmbJ5hO0chE",
+  authDomain: "elect-smart-1539655478398.firebaseapp.com",
+  databaseURL: "https://elect-smart-1539655478398.firebaseio.com",
+  projectId: "elect-smart-1539655478398",
+  storageBucket: "elect-smart-1539655478398.appspot.com",
+  messagingSenderId: "577385688896"
+};
+firebase.initializeApp(config);
 
 // Create a variable to reference the database.
 var database = firebase.database();
@@ -52,5 +52,5 @@ $("#add-search").on("click", function(event) {
   newsSearh = $("#seach-input").val().trim();
 
   database.ref().set({
-    search: searchTerm,
+    search: searchTerm
   })
