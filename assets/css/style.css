@@ -1,19 +1,13 @@
-/* body {
-background-image:url("../images/American\ Flag.jpg");
-opacity: .1;
-height: 100%;
-background-position: center;
-background-repeat: no-repeat;
-background-size: cover;
-} */
+body {
+background-color: aliceblue;
+}
 .jumbotron {
 background-image:url("../images/ElectSmart\ Logo.jpg");
 background-position: center;
 background-repeat: no-repeat;
-background-color: white;
+background-color: aliceblue;;
 opacity: 1;
 margin-top: -80px;
-/* background-size: cover; */
 }
 
 #november {
