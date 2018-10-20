@@ -31,7 +31,7 @@ $(document).ready(function () {
             //After data has been retrieved from then request then
             $.ajax(settingsVoter).then(function (responseVoter) {
                 console.log(responseVoter);
-                
+
                 //show full address on HTML 
                 var div = $("<div>").html("<b> Search Address: </b>");
                 var searchAddress = responseVoter.normalizedInput.line1 + ", " + responseVoter.normalizedInput.city + ", " + responseVoter.normalizedInput.state + ", " + responseVoter.normalizedInput.zip;
@@ -102,7 +102,7 @@ $(document).ready(function () {
                         //create row for Referendum
                         var rowRef = $("<tr>");
                         //create first column for the Referendum
-                        var columnRef = $("<td>").html("<b>"+contestType+"</b>");
+                        var columnRef = $("<td>").html("<b>" + contestType + "</b>");
                         //append column Ref to rowRef
                         rowRef.append(columnRef);
                         //create column to get referendum question
@@ -154,7 +154,7 @@ $(document).ready(function () {
                 }
 
                 // if both available then fill in both
-                if(polling.length > 0 && polling1.length > 0) {
+                if (polling.length > 0 && polling1.length > 0) {
                     for (var l = 0; l < polling1.length; l++) {
                         polling1 = polling1[l];
                         var pollingLocation = polling1.address.locationName + ", " + polling1.address.line1 +
@@ -179,12 +179,12 @@ $(document).ready(function () {
                         $("#vote-location").append(divPLocation);
                         $("#votesite-hours").append(divPHours);
                     }
-                    
+
                 }
             })
         }
     })
-
+    //------------ This code to set up for searching representatives-------------------
     //On click button for function to show current representatives
     $("#representatives").on("click", function (event) {
         event.preventDefault();
@@ -219,8 +219,8 @@ $(document).ready(function () {
 
                 //show full address on HTML 
                 var div = $("<div>").html("<b> Search Address: </b>");
-                var searchAddress = responseRep.normalizedInput.line1 + ", " + responseRep.normalizedInput.city + ", " 
-                + responseRep.normalizedInput.state + ", " + responseRep.normalizedInput.zip;
+                var searchAddress = responseRep.normalizedInput.line1 + ", " + responseRep.normalizedInput.city + ", "
+                    + responseRep.normalizedInput.state + ", " + responseRep.normalizedInput.zip;
                 div.append(searchAddress);
                 $("#display-address").append(div);
 
@@ -322,6 +322,7 @@ $(document).ready(function () {
             })
         }
     })
+
     // Function to empty all results from input
     $("button").click(function restart() {
         $("#APILanding").empty();
@@ -332,4 +333,62 @@ $(document).ready(function () {
         $("#vote-location").empty();
         $("#votesite-hours").empty();
     });
+    //------------------------------------------------------------------------------------------------------------------
+    //------------------This part if for second search and firebase---------
+    //On click button to show election news
+    $("#news").on("click", function (event) {
+        event.preventDefault();
+
+        // create variable for news search term
+        var searchTerm = $("#search-term").val().trim();
+        console.log(searchTerm);
+
+        // prevent empty news search
+        if (searchTerm === "") {
+            return;
+        }
+
+        else {
+            // News API call--keyword search
+            var settings = {
+                "async": true,
+                "crossDomain": true,
+                "url": "https://newsapi.org/v2/everything?q="+searchTerm+"&apikey=a894f1af7fb6477981fd17b552b49b42",
+                "method": "GET",
+            }
+        }
+        $.ajax(settings).then(function (response) {
+            console.log(response);
+            var 
+        });
+    })
+
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyBTq74naeMGcbolfwl1KMijbmbJ5hO0chE",
+        authDomain: "elect-smart-1539655478398.firebaseapp.com",
+        databaseURL: "https://elect-smart-1539655478398.firebaseio.com",
+        projectId: "elect-smart-1539655478398",
+        storageBucket: "",
+        messagingSenderId: "577385688896"
+    };
+    firebase.initializeApp(config);
+
+    // Create a variable to reference the database.
+    var database = firebase.database();
+
+    // Initial Values
+    var searchTerm = "";
+
+    // Capture Button Click
+    $("#add-search").on("click", function (event) {
+        event.preventDefault();
+
+        newsSearh = $("#seach-input").val().trim();
+
+        database.ref().set({
+            search: searchTerm,
+        })
+
+    })
 })
