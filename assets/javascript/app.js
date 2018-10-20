@@ -335,7 +335,25 @@ $(document).ready(function () {
     })
 
     // Function to empty all results from input
-    $("button").click(function restart() {
+    $("#election").click(function restart() {
+        $("#APILanding").empty();
+        $("#display-address").empty();
+        $("#election-table").empty();
+        $("#polling-location").empty();
+        $("#polling-hours").empty();
+        $("#vote-location").empty();
+        $("#votesite-hours").empty();
+    });
+    $("#representatives").click(function restart() {
+        $("#APILanding").empty();
+        $("#display-address").empty();
+        $("#election-table").empty();
+        $("#polling-location").empty();
+        $("#polling-hours").empty();
+        $("#vote-location").empty();
+        $("#votesite-hours").empty();
+    });
+    $("#news").click(function restart() {
         $("#APILanding").empty();
         $("#display-address").empty();
         $("#election-table").empty();
