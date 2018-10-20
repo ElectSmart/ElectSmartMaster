@@ -244,6 +244,16 @@ $(document).ready(function () {
                 headTR.append(OfficeTH, NameTH);
                 $("#election-table").prepend(headTR);
 
+                for (i=0; i<11; i++){
+
+                    // adding null rows for readability
+                    var nullTH = $("<th>").attr ("scope", "col");
+                    nullTH.text(" ");
+   
+                    headTR.append(nullTH);
+   
+                   }
+
                 //storing office of the representative info in variable
                 var resultsOffice = responseRep.offices;
                 //console.log(resultsOffice);
