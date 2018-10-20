@@ -44,16 +44,16 @@ $(document).ready(function () {
                 ElectionTH.text("Election Contest");
                 var candidateTH = $("<th>").attr("scope", "col");
                 candidateTH.text("Candidates");
-               
+
                 headTR.append(ElectionTH, candidateTH);
 
-                for (i=0; i<5; i++){
+                for (i = 0; i < 5; i++) {
 
-                 // adding null rows for readability
-                 var nullTH = $("<th>").attr ("scope", "col");
-                 nullTH.text(" ");
+                    // adding null rows for readability
+                    var nullTH = $("<th>").attr("scope", "col");
+                    nullTH.text(" ");
 
-                 headTR.append(nullTH);
+                    headTR.append(nullTH);
 
                 }
                 $("#election-table").prepend(headTR);
@@ -364,63 +364,72 @@ $(document).ready(function () {
             var settings = {
                 "async": true,
                 "crossDomain": true,
-                "url": "https://newsapi.org/v2/everything?q="+searchTerm+"&apikey=a894f1af7fb6477981fd17b552b49b42",
+                "url": "https://newsapi.org/v2/everything?q=" + searchTerm + "&apikey=a894f1af7fb6477981fd17b552b49b42",
                 "method": "GET",
             }
         }
         $.ajax(settings).then(function (response) {
             // console.log(response);
-            var searchArticles = response.articles;
-            console.log("articles", searchArticles);
+            var searchArticles = response.articles
+            // console.log("articles", searchArticles);
+            //created head of the table
             var tr = $("<tr>")
-            var tdSource =$("<th>").text("Source");
-            var tdArticle =$("<th>").text("Article");
+            var tdSource = $("<th>").text("Source");
+            var tdArticle = $("<th>").text("Article");
             tr.append(tdSource, tdArticle);
             $("#APILanding").append(tr);
-
-            for (var i = 0; i < searchArticles.length; i++){
-                console.log(i)
+            // run through the article array
+            for (var i = 0; i < searchArticles.length; i++) {
+                // console.log(i)
+                // diplay all articles in a table
                 var searchArticle = searchArticles[i];
                 newTR = $("<tr>");
                 sourceCol = $("<td>").text(searchArticle.source.name);
                 newCol = $("<td>")
-                titleRow=$("<tr>")
-                aTitle=$("<a>").html("<b>Title: </b>" + searchArticle.title).attr("href", searchArticle.url).attr("target", "_blank");
+                titleRow = $("<tr>")
+                aTitle = $("<a>").html("<b>Title: </b>" + searchArticle.title).attr("href", searchArticle.url).attr("target", "_blank");
                 titleRow.append(aTitle);
-                desRow=$("<tr>").html("<b>Description: </b>"+ searchArticle.description);
+                desRow = $("<tr>").html("<b>Description: </b>" + searchArticle.description);
                 newCol.append(titleRow, desRow);
                 newTR.append(sourceCol, newCol);
                 $("#APILanding").append(newTR);
-            } 
+            }
         })
     })
 
     // Initialize Firebase
     var config = {
-        apiKey: "AIzaSyBTq74naeMGcbolfwl1KMijbmbJ5hO0chE",
-        authDomain: "elect-smart-1539655478398.firebaseapp.com",
-        databaseURL: "https://elect-smart-1539655478398.firebaseio.com",
-        projectId: "elect-smart-1539655478398",
+        apiKey: "AIzaSyB76DlsIYJQ7YRxjj2ufA44htF23WRNhHo",
+        authDomain: "electsmart-219601.firebaseapp.com",
+        databaseURL: "https://electsmart-219601.firebaseio.com",
+        projectId: "electsmart-219601",
         storageBucket: "",
-        messagingSenderId: "577385688896"
+        messagingSenderId: "92033968708"
     };
     firebase.initializeApp(config);
 
     // Create a variable to reference the database.
     var database = firebase.database();
 
-    // Initial Values
-    var searchTerm = "";
-
     // Capture Button Click
-    $("#add-search").on("click", function (event) {
+    $("#news").on("click", function (event) {
+        console.log("WTF");
         event.preventDefault();
+        //grab value from search term
+        var searchTerm = $("#search-term").val().trim();
+        // console.log(searchTerm);
+        //return search term if it's empty
+        if (searchTerm === " ") {
+            return;
+        }
 
-        newsSearh = $("#seach-input").val().trim();
-
-        database.ref().set({
-            search: searchTerm,
-        })
+        else {
+            //push information into firebase
+            database.ref().push({
+                search: searchTerm,
+            });
+            console.log(searchTerm);
+        }
 
     })
 })
