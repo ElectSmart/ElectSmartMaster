@@ -5,7 +5,7 @@
 ## Live Link:
 *https://electsmart.github.io/ElectSmartMaster/*
 
-##By entering address in the search, you will be able to obtain the following information 
+## By entering address in the search, you will be able to obtain the following information 
 * Nearest early voting site (If available)
 * Nearert polling location
 * Federal and local election contests in your area 
