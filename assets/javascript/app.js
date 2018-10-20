@@ -369,9 +369,30 @@ $(document).ready(function () {
             }
         }
         $.ajax(settings).then(function (response) {
-            console.log(response);
-            var 
-        });
+            // console.log(response);
+            var searchArticles = response.articles;
+            console.log("articles", searchArticles);
+            var tr = $("<tr>")
+            var tdSource =$("<th>").text("Source");
+            var tdArticle =$("<th>").text("Article");
+            tr.append(tdSource, tdArticle);
+            $("#APILanding").append(tr);
+
+            for (var i = 0; i < searchArticles.length; i++){
+                console.log(i)
+                var searchArticle = searchArticles[i];
+                newTR = $("<tr>");
+                sourceCol = $("<td>").text(searchArticle.source.name);
+                newCol = $("<td>")
+                titleRow=$("<tr>")
+                aTitle=$("<a>").html("<b>Title: </b>" + searchArticle.title).attr("href", searchArticle.url).attr("target", "_blank");
+                titleRow.append(aTitle);
+                desRow=$("<tr>").html("<b>Description: </b>"+ searchArticle.description);
+                newCol.append(titleRow, desRow);
+                newTR.append(sourceCol, newCol);
+                $("#APILanding").append(newTR);
+            } 
+        })
     })
 
     // Initialize Firebase
