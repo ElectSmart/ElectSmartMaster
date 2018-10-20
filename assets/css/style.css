@@ -1,24 +1,25 @@
-/* body {
-background-image:url("../images/American\ Flag.jpg");
-opacity: .1;
-height: 100%;
-background-position: center;
-background-repeat: no-repeat;
-background-size: cover;
-} */
+body {
+background-color: aliceblue;
+font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', 'sans-serif'
+}
 .jumbotron {
 background-image:url("../images/ElectSmart\ Logo.jpg");
 background-position: center;
 background-repeat: no-repeat;
-background-color: red;
+background-color: aliceblue;;
 opacity: 1;
 margin-top: -80px;
-/* background-size: cover; */
 }
 
 #november {
-color:red;
+color: white;
 margin-top: 80px;
 padding-top: 90px;
-font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', 'sans-serif'
+}
+
+th {
+
+    background: navy;
+    color: white;
 }

@@ -6,14 +6,47 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>VoteSmart</title>
+    
+    <!-- Spectre Icon Styling -- does not include other Spectre feature CDN -->
+    <link rel="stylesheet" href="https://unpkg.com/spectre.css/dist/spectre-icons.min.css">
+
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <!--add JQuery link-->
     <link rel="stylesheet" href="assets/css/style.css">
-
+    
 </head>
 
 <body>
+
+    <!-- Navbar for Important Links -->
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand" href="#">
+          <img src="./assets/images/brand.PNG" width="30" height="30" class="d-inline-block align-top" alt="">
+          ElectSmart
+        </a>
+
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
+        <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item active">
+                    <a class="nav-link" href="#"> ElectSmart <span class="sr-only">(current)</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="http://www.vote.org">Vote.org</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="https://www.usa.gov/register-to-vote">How to Register</a>
+                  </li>
+                </ul>
+              </div>
+
+    </nav>
+    <br><br>
     <div class="container">
+        <br><br>
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
                 <h1 class="display-4, text-center"></h1>
@@ -36,6 +69,9 @@
 
                 <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
                     <div class="card-body">
+
+                        <!-- Added Spectre.css icon styling -->
+                        <i class="icon icon-location"></i>
                         Enter your address to see elections near you, or to receive information on your state and
                         federal representatives.
 
@@ -50,8 +86,8 @@
                                 </button>
 
                                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                                    <button class="dropdown-item" id="election">What elections are coming up near me?</button>
-                                    <button class="dropdown-item" id="representatives">Who are my representatives?</a>
+                                    <button class="dropdown-item" id="election" data-toggle="modal" data-target="#exampleModalCenter">What elections are coming up near me?</button>
+                                    <button class="dropdown-item" id="representatives" data-toggle="modal" data-target="#exampleModalCenter">Who are my representatives?</a>
                                 </div>
                             </div>
                         </form>
@@ -70,9 +106,11 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
                     <div class="card-body">
 
+                        <!-- Added Spectre.css icon styling -->
+                        <i class="icon icon-location"></i>
                         Receive up-to-date news on a candidate or representative who matters to you.
                         <br><br>
-                        <input class="form-control" type="text" placeholder="Address" id="address">
+                        <input class="form-control" type="text" placeholder="Search Term" id="search-term">
                         <br>
                         <button type="button" class="btn btn-secondary" id="news">Search</button>
 
@@ -92,15 +130,42 @@
             <span id="polling-hours"></span>
             <br>
             <!--Added table here so all API information will be put in there-->
-            <table class="table">
-                <thead id="election-table">
-                </thead>
-
-                <tbody id="APILanding">
-                </tbody>
-            </table>
+            <div class="table-responsive">
+                    <table class="table">
+                            <thead id="election-table" class="th">
+                            </thead>
+            
+                            <tbody id="APILanding">
+                            </tbody>
+                        </table>
+            </div>
+            
         </div>
+
+        <!-- Testing a modal button -->
+        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">
+                Launch demo modal
+              </button>
     </div>
+
+        <!-- The actual modal -->
+    <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLongTitle">Your results are below.</h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  Thank you for doing your civic duty and engaging with our democracy.
+                  <br><br>
+                  Remember, election day is <strong>Tuesday, November 6.</strong> Use the links in the Navbar to make sure that you are registered to vote -- and the information provided below as a starting point toward building your informed opinion.
+                </div>
+              </div>
+            </div>
+          </div>
     <!--Add Javascript-->
     <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
         crossorigin="anonymous"></script>
@@ -110,6 +175,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.11.0/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.5.5/firebase.js"></script>
     <script rel="text/javascript" src="assets/javascript/app.js"></script>
 </body>
 

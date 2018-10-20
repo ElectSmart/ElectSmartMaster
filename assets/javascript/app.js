@@ -31,7 +31,7 @@ $(document).ready(function () {
             //After data has been retrieved from then request then
             $.ajax(settingsVoter).then(function (responseVoter) {
                 console.log(responseVoter);
-                
+
                 //show full address on HTML 
                 var div = $("<div>").html("<b> Search Address: </b>");
                 var searchAddress = responseVoter.normalizedInput.line1 + ", " + responseVoter.normalizedInput.city + ", " + responseVoter.normalizedInput.state + ", " + responseVoter.normalizedInput.zip;
@@ -44,7 +44,18 @@ $(document).ready(function () {
                 ElectionTH.text("Election Contest");
                 var candidateTH = $("<th>").attr("scope", "col");
                 candidateTH.text("Candidates");
+
                 headTR.append(ElectionTH, candidateTH);
+
+                for (i = 0; i < 30; i++) {
+
+                    // adding null rows for readability
+                    var nullTH = $("<th>").attr("scope", "col");
+                    nullTH.text(" ");
+
+                    headTR.append(nullTH);
+
+                }
                 $("#election-table").prepend(headTR);
                 //storing contests data from voter request in a varaible
                 var resultsContest = responseVoter.contests;
@@ -102,7 +113,7 @@ $(document).ready(function () {
                         //create row for Referendum
                         var rowRef = $("<tr>");
                         //create first column for the Referendum
-                        var columnRef = $("<td>").html("<b>"+contestType+"</b>");
+                        var columnRef = $("<td>").html("<b>" + contestType + "</b>");
                         //append column Ref to rowRef
                         rowRef.append(columnRef);
                         //create column to get referendum question
@@ -154,7 +165,7 @@ $(document).ready(function () {
                 }
 
                 // if both available then fill in both
-                if(polling.length > 0 && polling1.length > 0) {
+                if (polling.length > 0 && polling1.length > 0) {
                     for (var l = 0; l < polling1.length; l++) {
                         polling1 = polling1[l];
                         var pollingLocation = polling1.address.locationName + ", " + polling1.address.line1 +
@@ -179,12 +190,12 @@ $(document).ready(function () {
                         $("#vote-location").append(divPLocation);
                         $("#votesite-hours").append(divPHours);
                     }
-                    
+
                 }
             })
         }
     })
-
+    //------------ This code to set up for searching representatives-------------------
     //On click button for function to show current representatives
     $("#representatives").on("click", function (event) {
         event.preventDefault();
@@ -219,8 +230,8 @@ $(document).ready(function () {
 
                 //show full address on HTML 
                 var div = $("<div>").html("<b> Search Address: </b>");
-                var searchAddress = responseRep.normalizedInput.line1 + ", " + responseRep.normalizedInput.city + ", " 
-                + responseRep.normalizedInput.state + ", " + responseRep.normalizedInput.zip;
+                var searchAddress = responseRep.normalizedInput.line1 + ", " + responseRep.normalizedInput.city + ", "
+                    + responseRep.normalizedInput.state + ", " + responseRep.normalizedInput.zip;
                 div.append(searchAddress);
                 $("#display-address").append(div);
 
@@ -232,6 +243,16 @@ $(document).ready(function () {
                 NameTH.text("Name of Representative");
                 headTR.append(OfficeTH, NameTH);
                 $("#election-table").prepend(headTR);
+
+                for (i=0; i<30; i++){
+
+                    // adding null rows for readability
+                    var nullTH = $("<th>").attr ("scope", "col");
+                    nullTH.text(" ");
+   
+                    headTR.append(nullTH);
+   
+                   }
 
                 //storing office of the representative info in variable
                 var resultsOffice = responseRep.offices;
@@ -322,8 +343,9 @@ $(document).ready(function () {
             })
         }
     })
+
     // Function to empty all results from input
-    $("button").click(function restart() {
+    $("#election").click(function restart() {
         $("#APILanding").empty();
         $("#display-address").empty();
         $("#election-table").empty();
@@ -332,4 +354,110 @@ $(document).ready(function () {
         $("#vote-location").empty();
         $("#votesite-hours").empty();
     });
+    $("#representatives").click(function restart() {
+        $("#APILanding").empty();
+        $("#display-address").empty();
+        $("#election-table").empty();
+        $("#polling-location").empty();
+        $("#polling-hours").empty();
+        $("#vote-location").empty();
+        $("#votesite-hours").empty();
+    });
+    $("#news").click(function restart() {
+        $("#APILanding").empty();
+        $("#display-address").empty();
+        $("#election-table").empty();
+        $("#polling-location").empty();
+        $("#polling-hours").empty();
+        $("#vote-location").empty();
+        $("#votesite-hours").empty();
+    });
+    //------------------------------------------------------------------------------------------------------------------
+    //------------------This part if for second search and firebase---------
+    //On click button to show election news
+    $("#news").on("click", function (event) {
+        event.preventDefault();
+
+        // create variable for news search term
+        var searchTerm = $("#search-term").val().trim();
+        console.log(searchTerm);
+
+        // prevent empty news search
+        if (searchTerm === "") {
+            return;
+        }
+
+        else {
+            // News API call--keyword search
+            var settings = {
+                "async": true,
+                "crossDomain": true,
+                "url": "https://newsapi.org/v2/everything?q=" + searchTerm + "&apikey=a894f1af7fb6477981fd17b552b49b42",
+                "method": "GET",
+            }
+        }
+        $.ajax(settings).then(function (response) {
+            // console.log(response);
+            var searchArticles = response.articles
+            // console.log("articles", searchArticles);
+            //created head of the table
+            var tr = $("<tr>")
+            var tdSource = $("<th>").text("Source");
+            var tdArticle = $("<th>").text("Article");
+            tr.append(tdSource, tdArticle);
+            $("#APILanding").append(tr);
+            // run through the article array
+            for (var i = 0; i < searchArticles.length; i++) {
+                // console.log(i)
+                // diplay all articles in a table
+                var searchArticle = searchArticles[i];
+                newTR = $("<tr>");
+                sourceCol = $("<td>").text(searchArticle.source.name);
+                newCol = $("<td>")
+                titleRow = $("<tr>")
+                aTitle = $("<a>").html("<b>Title: </b>" + searchArticle.title).attr("href", searchArticle.url).attr("target", "_blank");
+                titleRow.append(aTitle);
+                desRow = $("<tr>").html("<b>Description: </b>" + searchArticle.description);
+                newCol.append(titleRow, desRow);
+                newTR.append(sourceCol, newCol);
+                $("#APILanding").append(newTR);
+            }
+        })
+    })
+
+    // Initialize Firebase
+    var config = {
+        apiKey: "AIzaSyB76DlsIYJQ7YRxjj2ufA44htF23WRNhHo",
+        authDomain: "electsmart-219601.firebaseapp.com",
+        databaseURL: "https://electsmart-219601.firebaseio.com",
+        projectId: "electsmart-219601",
+        storageBucket: "",
+        messagingSenderId: "92033968708"
+    };
+    firebase.initializeApp(config);
+
+    // Create a variable to reference the database.
+    var database = firebase.database();
+
+    // Capture Button Click
+    $("#news").on("click", function (event) {
+        console.log("WTF");
+        event.preventDefault();
+        //grab value from search term
+        var searchTerm = $("#search-term").val().trim();
+        // console.log(searchTerm);
+        //return search term if it's empty
+        if (searchTerm === " ") {
+            return;
+        }
+
+        else {
+            //push information into firebase
+            database.ref().push({
+                search: searchTerm,
+            });
+            console.log(searchTerm);
+        }
+
+    })
 })
