@@ -26,7 +26,7 @@
 * JS library
 * API Keys from two different sources
   * Google Civic
-  * TBD
+  * NewsAPI
 * Firebase
 
 
