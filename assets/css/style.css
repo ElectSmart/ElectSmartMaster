@@ -10,15 +10,20 @@ background-size: cover;
 background-image:url("../images/ElectSmart\ Logo.jpg");
 background-position: center;
 background-repeat: no-repeat;
-background-color: red;
+background-color: white;
 opacity: 1;
 margin-top: -80px;
 /* background-size: cover; */
 }
 
 #november {
-color:red;
+color: white;
 margin-top: 80px;
 padding-top: 90px;
-font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', 'sans-serif'
+}
+
+th {
+
+    background: aliceblue;
 }

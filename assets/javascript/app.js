@@ -44,7 +44,18 @@ $(document).ready(function () {
                 ElectionTH.text("Election Contest");
                 var candidateTH = $("<th>").attr("scope", "col");
                 candidateTH.text("Candidates");
+               
                 headTR.append(ElectionTH, candidateTH);
+
+                for (i=0; i<5; i++){
+
+                 // adding null rows for readability
+                 var nullTH = $("<th>").attr ("scope", "col");
+                 nullTH.text(" ");
+
+                 headTR.append(nullTH);
+
+                }
                 $("#election-table").prepend(headTR);
                 //storing contests data from voter request in a varaible
                 var resultsContest = responseVoter.contests;
