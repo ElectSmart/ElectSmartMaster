@@ -1,16 +1,18 @@
-// News API call (general)
-var url = 'https://newsapi.org/v2/top-headlines?' +
-          'country=us&' +
-          'apiKey=c5c050c6a3af4b0580432afa35b8dcaa';
-var req = new Request(url);
-fetch(req)
-    .then(function(response) {
-        console.log(response.json());
-    })
+//On click button to show election news
+$("#news").on("click", function (event) {
+  event.preventDefault();
 
+// create variable for news serach term
+var searchTerm = $("#searchTerm").val().trim();
+        console.log(searchTerm);
+
+// prevent empty news search
+if (searchTerm === " ") {
+    return;
+      }
+
+else {
 // News API call--keyword search
-var = searchTerm
-
 var settings = {
     "async": true,
     "crossDomain": true,
@@ -24,6 +26,7 @@ var settings = {
   $.ajax(settings).done(function (response) {
     console.log(response);
   });
+}
 
 // Initialize Firebase
 var config = {
@@ -36,3 +39,18 @@ var config = {
   };
   firebase.initializeApp(config);
 
+// Create a variable to reference the database.
+var database = firebase.database();
+
+// Initial Values
+var searchTerm = "";
+
+// Capture Button Click
+$("#add-search").on("click", function(event) {
+  event.preventDefault();
+
+  newsSearh = $("#seach-input").val().trim();
+
+  database.ref().set({
+    search: searchTerm,
+  })
