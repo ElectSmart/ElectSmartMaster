@@ -47,7 +47,7 @@ $(document).ready(function () {
 
                 headTR.append(ElectionTH, candidateTH);
 
-                for (i = 0; i < 5; i++) {
+                for (i = 0; i < 30; i++) {
 
                     // adding null rows for readability
                     var nullTH = $("<th>").attr("scope", "col");
@@ -244,7 +244,7 @@ $(document).ready(function () {
                 headTR.append(OfficeTH, NameTH);
                 $("#election-table").prepend(headTR);
 
-                for (i=0; i<11; i++){
+                for (i=0; i<30; i++){
 
                     // adding null rows for readability
                     var nullTH = $("<th>").attr ("scope", "col");
