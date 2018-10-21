@@ -22,7 +22,8 @@
 * Bootstrap
 * Javascript
 * JQuery
-* JSON/AJAX
+* AJAX
+* JSON
 * New CSS Framework (Spectre Icon Styling)
 * API Keys from two different sources
   * Google Civic
