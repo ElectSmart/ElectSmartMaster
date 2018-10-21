@@ -1,5 +1,6 @@
 body {
 background-color: aliceblue;
+font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', 'sans-serif'
 }
 .jumbotron {
 background-image:url("../images/ElectSmart\ Logo.jpg");
@@ -21,4 +22,7 @@ th {
 
     background: navy;
     color: white;
+}
+footer {
+    text-align: center;
 }
