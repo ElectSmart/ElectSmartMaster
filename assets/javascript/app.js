@@ -55,7 +55,6 @@ $(document).ready(function () {
                     nullTH.text(" ");
                     headTR.append(nullTH);
                 }
-                
                 $("#election-table").prepend(headTR);
                 //storing contests data from voter request in a varaible
                 var resultsContest = responseVoter.contests;
@@ -135,14 +134,14 @@ $(document).ready(function () {
                 // if early votesite is not available, the fill in polling location
                 if (typeof (polling) === "undefined" && polling1.length > 0) {
                     console.log("polling1");
-                    for (var l = 0; l < polling1.length; l++) {
-                        polling1 = polling1[l];
-                        var pollingLocation = polling1.address.locationName + ", " + polling1.address.line1 +
-                            ", " + polling1.address.city + ", " + polling1.address.state + ", " + polling1.address.zip;
-                        var pollingHours = polling1.pollingHours;
+                    for (var l = 0; l < 2; l++) {
+                        var newpolling1 = polling1[l];
+                        var pollingLocation = newpolling1.address.locationName + ", " + newpolling1.address.line1 +
+                            ", " + newpolling1.address.city + ", " + newpolling1.address.state + ", " + newpolling1.address.zip;
+                        var pollingHours = newpolling1.pollingHours;
                         var divPLocation = $("<div>").html("<b>Nearest Polling Location: </b>");
-                        var divPHours = $("<div>").html("<b><i>Polling Hours: </i></b>");
                         divPLocation.append(pollingLocation);
+                        var divPHours = $("<div>").html("<b><i>Polling Hours: </i></b>");
                         divPHours.append(pollingHours);
                         $("#polling-location").append(divPLocation);
                         $("#polling-hours").append(divPHours);
@@ -150,14 +149,14 @@ $(document).ready(function () {
                 }
                 // if polling location isn't available, then fill in early votesites
                 if (typeof (polling1) === "undefined" && polling.length > 0) {
-                    for (var k = 0; k < polling.length; k++) {
-                        polling = polling[k];
-                        var voteSiteLocation = polling.address.locationName + ", " + polling.address.line1 +
-                            ", " + polling.address.city + ", " + polling.address.state + ", " + polling.address.zip;
-                        var voteSiteHours = polling.pollingHours;
+                    for (var k = 0; k < 1; k++) {
+                        var newpolling = polling[k];
+                        var voteSiteLocation = newpolling.address.locationName + ", " + newpolling.address.line1 +
+                            ", " + newpolling.address.city + ", " + newpolling.address.state + ", " + newpolling.address.zip;
+                        var voteSiteHours = newpolling.pollingHours;
                         var divPLocation = $("<div>").html("<b>Nearest Early Voting Location: </b>");
-                        var divPHours = $("<div>").html("<b><i>Polling Hours: </i></b>");
                         divPLocation.append(voteSiteLocation);
+                        var divPHours = $("<div>").html("<b><i>Polling Hours: </i></b>");
                         divPHours.append(voteSiteHours);
                         $("#vote-location").append(divPLocation);
                         $("#votesite-hours").append(divPHours);
@@ -166,26 +165,26 @@ $(document).ready(function () {
 
                 // if both available then fill in both
                 if (polling.length > 0 && polling1.length > 0) {
-                    for (var l = 0; l < polling1.length; l++) {
-                        polling1 = polling1[l];
-                        var pollingLocation = polling1.address.locationName + ", " + polling1.address.line1 +
-                            ", " + polling1.address.city + ", " + polling1.address.state + ", " + polling1.address.zip;
-                        var pollingHours = polling1.pollingHours;
+                    for (var l = 0; l < 1; l++) {
+                        var newpolling1 = polling1[l];
+                        var pollingLocation = newpolling1.address.locationName + ", " + newpolling1.address.line1 +
+                            ", " + newpolling1.address.city + ", " + newpolling1.address.state + ", " + newpolling1.address.zip;
+                        var pollingHours = newpolling1.pollingHours;
                         var divPLocation = $("<div>").html("<b>Nearest Polling Location: </b>");
-                        var divPHours = $("<div>").html("<b><i>Polling Hours: </i></b>");
                         divPLocation.append(pollingLocation);
+                        var divPHours = $("<div>").html("<b><i>Polling Hours: </i></b>");
                         divPHours.append(pollingHours);
                         $("#polling-location").append(divPLocation);
                         $("#polling-hours").append(divPHours);
                     }
-                    for (var k = 0; k < polling.length; k++) {
-                        polling = polling[k];
-                        var voteSiteLocation = polling.address.locationName + ", " + polling.address.line1 +
-                            ", " + polling.address.city + ", " + polling.address.state + ", " + polling.address.zip;
-                        var voteSiteHours = polling.pollingHours;
+                    for (var k = 0; k < 2; k++) {
+                        var newpolling = polling[k];
+                        var voteSiteLocation = newpolling.address.locationName + ", " + newpolling.address.line1 +
+                            ", " + newpolling.address.city + ", " + newpolling.address.state + ", " + newpolling.address.zip;
+                        var voteSiteHours = newpolling.pollingHours;
                         var divPLocation = $("<div>").html("<b>Nearest Early Voting Location: </b>");
-                        var divPHours = $("<div>").html("<b><i>Polling Hours: </i></b>");
                         divPLocation.append(voteSiteLocation);
+                        var divPHours = $("<div>").html("<b><i>Polling Hours: </i></b>");
                         divPHours.append(voteSiteHours);
                         $("#vote-location").append(divPLocation);
                         $("#votesite-hours").append(divPHours);
