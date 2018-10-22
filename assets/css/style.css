@@ -1,6 +1,6 @@
 body {
 background-color: aliceblue;
-font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', 'sans-serif'
+font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', 'sans-serif';
 }
 .jumbotron {
 background-image:url("../images/ElectSmart\ Logo-01.jpg");
@@ -31,10 +31,11 @@ th {
 }
 footer {
     text-align: center;
-    background-color: navy;
-    color: white;
+    background-color: #031585;
     min-height: 100%;
     display: grid;
     grid-template-rows: auto 1fr auto;
     grid-template-columns: 100%;
+    font-display: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', 'sans-serif';
+    color: white;
 }
