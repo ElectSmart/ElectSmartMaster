@@ -11,12 +11,12 @@ opacity: 1;
 margin-top: -80px;
 }
 
-#november {
-color: white;
-margin-top: 80px;
-padding-top: 90px;
-font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', 'sans-serif'
+.accordion {
+    margin-top: -25px;
 }
+
+#elecRepInfo {
+    margin-left: -5px;
 
 th {
 
