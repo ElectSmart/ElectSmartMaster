@@ -143,23 +143,21 @@ $(document).ready(function () {
                         divPLocation.append(pollingLocation);
                         var divPHours = $("<div>").html("<b><i>Polling Hours: </i></b>");
                         divPHours.append(pollingHours);
-                        $("#polling-location").append(divPLocation);
-                        $("#polling-hours").append(divPHours);
+                        $("#polling-location").append(divPLocation, divPHours);
                     }
                 }
                 // if polling location isn't available, then fill in early votesites
                 if (typeof (polling1) === "undefined" && polling.length > 0) {
-                    for (var k = 0; k < 1; k++) {
+                    for (var k = 0; k < 2; k++) {
                         var newpolling = polling[k];
                         var voteSiteLocation = newpolling.address.locationName + ", " + newpolling.address.line1 +
                             ", " + newpolling.address.city + ", " + newpolling.address.state + ", " + newpolling.address.zip;
                         var voteSiteHours = newpolling.pollingHours;
-                        var divPLocation = $("<div>").html("<b>Nearest Early Voting Location: </b>");
+                        var divPLocation = $("<div>").html("<b>Early Voting Location: </b>");
                         divPLocation.append(voteSiteLocation);
                         var divPHours = $("<div>").html("<b><i>Polling Hours: </i></b>");
                         divPHours.append(voteSiteHours);
-                        $("#vote-location").append(divPLocation);
-                        $("#votesite-hours").append(divPHours);
+                        $("#vote-location").append(divPLocation, divPHours);
                     }
                 }
 
@@ -174,20 +172,18 @@ $(document).ready(function () {
                         divPLocation.append(pollingLocation);
                         var divPHours = $("<div>").html("<b><i>Polling Hours: </i></b>");
                         divPHours.append(pollingHours);
-                        $("#polling-location").append(divPLocation);
-                        $("#polling-hours").append(divPHours);
+                        $("#polling-location").append(divPLocation, divPHours);                        $("#polling-hours").append(divPHours);
                     }
-                    for (var k = 0; k < 1; k++) {
+                    for (var k = 0; k < 2; k++) {
                         var newpolling = polling[k];
                         var voteSiteLocation = newpolling.address.locationName + ", " + newpolling.address.line1 +
                             ", " + newpolling.address.city + ", " + newpolling.address.state + ", " + newpolling.address.zip;
                         var voteSiteHours = newpolling.pollingHours;
-                        var divPLocation = $("<div>").html("<b>Nearest Early Voting Location: </b>");
+                        var divPLocation = $("<div>").html("<b>Early Voting Location: </b>");
                         divPLocation.append(voteSiteLocation);
                         var divPHours = $("<div>").html("<b><i>Polling Hours: </i></b>");
                         divPHours.append(voteSiteHours);
-                        $("#vote-location").append(divPLocation);
-                        $("#votesite-hours").append(divPHours);
+                        $("#vote-location").append(divPLocation, divPHours);
                     }
 
                 }
