@@ -1,4 +1,6 @@
 $(document).ready(function () {
+
+    //--------------------- These codes are set up to populate election contests based on address -----------------------
     //On click button to show up coming elections
     $("#election").on("click", function (event) {
         event.preventDefault();
@@ -48,13 +50,10 @@ $(document).ready(function () {
                 headTR.append(ElectionTH, candidateTH);
 
                 for (i = 0; i < 30; i++) {
-
                     // adding null rows for readability
                     var nullTH = $("<th>").attr("scope", "col");
                     nullTH.text(" ");
-
                     headTR.append(nullTH);
-
                 }
                 $("#election-table").prepend(headTR);
                 //storing contests data from voter request in a varaible
@@ -135,66 +134,64 @@ $(document).ready(function () {
                 // if early votesite is not available, the fill in polling location
                 if (typeof (polling) === "undefined" && polling1.length > 0) {
                     console.log("polling1");
-                    for (var l = 0; l < polling1.length; l++) {
-                        polling1 = polling1[l];
-                        var pollingLocation = polling1.address.locationName + ", " + polling1.address.line1 +
-                            ", " + polling1.address.city + ", " + polling1.address.state + ", " + polling1.address.zip;
-                        var pollingHours = polling1.pollingHours;
+                    for (var l = 0; l < 1; l++) {
+                        var newpolling1 = polling1[l];
+                        var pollingLocation = newpolling1.address.locationName + ", " + newpolling1.address.line1 +
+                            ", " + newpolling1.address.city + ", " + newpolling1.address.state + ", " + newpolling1.address.zip;
+                        var pollingHours = newpolling1.pollingHours;
                         var divPLocation = $("<div>").html("<b>Nearest Polling Location: </b>");
-                        var divPHours = $("<div>").html("<b><i>Polling Hours: </i></b>");
                         divPLocation.append(pollingLocation);
+                        var divPHours = $("<div>").html("<b><i>Polling Hours: </i></b>");
                         divPHours.append(pollingHours);
-                        $("#polling-location").append(divPLocation);
-                        $("#polling-hours").append(divPHours);
+                        $("#polling-location").append(divPLocation, divPHours);
                     }
                 }
                 // if polling location isn't available, then fill in early votesites
                 if (typeof (polling1) === "undefined" && polling.length > 0) {
-                    for (var k = 0; k < polling.length; k++) {
-                        polling = polling[k];
-                        var voteSiteLocation = polling.address.locationName + ", " + polling.address.line1 +
-                            ", " + polling.address.city + ", " + polling.address.state + ", " + polling.address.zip;
-                        var voteSiteHours = polling.pollingHours;
-                        var divPLocation = $("<div>").html("<b>Nearest Early Voting Location: </b>");
-                        var divPHours = $("<div>").html("<b><i>Polling Hours: </i></b>");
+                    for (var k = 0; k < 2; k++) {
+                        var newpolling = polling[k];
+                        var voteSiteLocation = newpolling.address.locationName + ", " + newpolling.address.line1 +
+                            ", " + newpolling.address.city + ", " + newpolling.address.state + ", " + newpolling.address.zip;
+                        var voteSiteHours = newpolling.pollingHours;
+                        var divPLocation = $("<div>").html("<b>Early Voting Location: </b>");
                         divPLocation.append(voteSiteLocation);
+                        var divPHours = $("<div>").html("<b><i>Polling Hours: </i></b>");
                         divPHours.append(voteSiteHours);
-                        $("#vote-location").append(divPLocation);
-                        $("#votesite-hours").append(divPHours);
+                        $("#vote-location").append(divPLocation, divPHours);
                     }
                 }
 
                 // if both available then fill in both
                 if (polling.length > 0 && polling1.length > 0) {
-                    for (var l = 0; l < polling1.length; l++) {
-                        polling1 = polling1[l];
-                        var pollingLocation = polling1.address.locationName + ", " + polling1.address.line1 +
-                            ", " + polling1.address.city + ", " + polling1.address.state + ", " + polling1.address.zip;
-                        var pollingHours = polling1.pollingHours;
+                    for (var l = 0; l < 1; l++) {
+                        var newpolling1 = polling1[l];
+                        var pollingLocation = newpolling1.address.locationName + ", " + newpolling1.address.line1 +
+                            ", " + newpolling1.address.city + ", " + newpolling1.address.state + ", " + newpolling1.address.zip;
+                        var pollingHours = newpolling1.pollingHours;
                         var divPLocation = $("<div>").html("<b>Nearest Polling Location: </b>");
-                        var divPHours = $("<div>").html("<b><i>Polling Hours: </i></b>");
                         divPLocation.append(pollingLocation);
-                        divPHours.append(pollingHours);
-                        $("#polling-location").append(divPLocation);
-                        $("#polling-hours").append(divPHours);
-                    }
-                    for (var k = 0; k < polling.length; k++) {
-                        polling = polling[k];
-                        var voteSiteLocation = polling.address.locationName + ", " + polling.address.line1 +
-                            ", " + polling.address.city + ", " + polling.address.state + ", " + polling.address.zip;
-                        var voteSiteHours = polling.pollingHours;
-                        var divPLocation = $("<div>").html("<b>Nearest Early Voting Location: </b>");
                         var divPHours = $("<div>").html("<b><i>Polling Hours: </i></b>");
+                        divPHours.append(pollingHours);
+                        $("#polling-location").append(divPLocation, divPHours);                        $("#polling-hours").append(divPHours);
+                    }
+                    for (var k = 0; k < 2; k++) {
+                        var newpolling = polling[k];
+                        var voteSiteLocation = newpolling.address.locationName + ", " + newpolling.address.line1 +
+                            ", " + newpolling.address.city + ", " + newpolling.address.state + ", " + newpolling.address.zip;
+                        var voteSiteHours = newpolling.pollingHours;
+                        var divPLocation = $("<div>").html("<b>Early Voting Location: </b>");
                         divPLocation.append(voteSiteLocation);
+                        var divPHours = $("<div>").html("<b><i>Polling Hours: </i></b>");
                         divPHours.append(voteSiteHours);
-                        $("#vote-location").append(divPLocation);
-                        $("#votesite-hours").append(divPHours);
+                        $("#vote-location").append(divPLocation, divPHours);
                     }
 
                 }
             })
         }
     })
+    //----------------------------------------------------------------------------------------------------------------
+
     //------------ This code to set up for searching representatives-------------------
     //On click button for function to show current representatives
     $("#representatives").on("click", function (event) {
@@ -244,15 +241,15 @@ $(document).ready(function () {
                 headTR.append(OfficeTH, NameTH);
                 $("#election-table").prepend(headTR);
 
-                for (i=0; i<30; i++){
+                for (i = 0; i < 30; i++) {
 
                     // adding null rows for readability
-                    var nullTH = $("<th>").attr ("scope", "col");
+                    var nullTH = $("<th>").attr("scope", "col");
                     nullTH.text(" ");
-   
+
                     headTR.append(nullTH);
-   
-                   }
+
+                }
 
                 //storing office of the representative info in variable
                 var resultsOffice = responseRep.offices;
@@ -279,7 +276,7 @@ $(document).ready(function () {
                     var officeIndex = office.officialIndices;
                     //this for loop will loop through all the elemet in the official-indices array under offices array
                     for (var k = 0; k < officeIndex.length; k++) {
-                        officeindex = officeIndex[k];
+                        var officeindex = officeIndex[k];
                         // store officeIndex in index variable as an integer
                         var index = parseInt(officeindex);
                         //console.log(index);
@@ -302,7 +299,7 @@ $(document).ready(function () {
 
 
                                 //--------------The code here is to add URL link to the name of representative------------------
-                                //--some representative don't have URL--
+                                //--some representatives don't have URL--
                                 //store all url in repUrl
                                 var repUrl = resultsOfficialName[j].urls;
                                 // console.log(repUrl);
@@ -363,17 +360,9 @@ $(document).ready(function () {
         $("#vote-location").empty();
         $("#votesite-hours").empty();
     });
-    $("#news").click(function restart() {
-        $("#APILanding").empty();
-        $("#display-address").empty();
-        $("#election-table").empty();
-        $("#polling-location").empty();
-        $("#polling-hours").empty();
-        $("#vote-location").empty();
-        $("#votesite-hours").empty();
-    });
     //------------------------------------------------------------------------------------------------------------------
-    //------------------This part if for second search and firebase---------
+
+    //------------------This part is for second search using news API---------
     //On click button to show election news
     $("#news").on("click", function (event) {
         event.preventDefault();
@@ -406,6 +395,7 @@ $(document).ready(function () {
             var tdArticle = $("<th>").text("Article");
             tr.append(tdSource, tdArticle);
             $("#APILanding").append(tr);
+
             // run through the article array
             for (var i = 0; i < searchArticles.length; i++) {
                 // console.log(i)
@@ -424,7 +414,19 @@ $(document).ready(function () {
             }
         })
     })
+    //clear out all areas for a new search
+    $("#news").click(function restart() {
+        $("#APILanding").empty();
+        $("#display-address").empty();
+        $("#election-table").empty();
+        $("#polling-location").empty();
+        $("#polling-hours").empty();
+        $("#vote-location").empty();
+        $("#votesite-hours").empty();
+    });
+    //----------------------------------------------------------------------------
 
+    //------------These codes to record search term in firebase-------------------
     // Initialize Firebase
     var config = {
         apiKey: "AIzaSyB76DlsIYJQ7YRxjj2ufA44htF23WRNhHo",
@@ -458,6 +460,6 @@ $(document).ready(function () {
             });
             console.log(searchTerm);
         }
-
     })
+    //--------------------------------------------------------------------------------------
 })

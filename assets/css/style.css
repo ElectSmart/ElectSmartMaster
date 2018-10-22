@@ -3,7 +3,7 @@ background-color: aliceblue;
 font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', 'sans-serif'
 }
 .jumbotron {
-background-image:url("../images/ElectSmart\ Logo.jpg");
+background-image:url("../images/ElectSmart\ Logo-01.jpg");
 background-position: center;
 background-repeat: no-repeat;
 background-color: aliceblue;;
@@ -11,15 +11,23 @@ opacity: 1;
 margin-top: -80px;
 }
 
-#november {
-color: white;
-margin-top: 80px;
-padding-top: 90px;
-font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', 'sans-serif'
+.accordion {
+    margin-top: -25px;
+}
+
+#elecRepInfo {
+    margin-left: -5px;
+}
+
+#candidateSearch {
+    margin-left: -5px;
 }
 
 th {
 
     background: navy;
     color: white;
+}
+footer {
+    text-align: center;
 }

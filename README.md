@@ -5,7 +5,7 @@
 ## Live Link:
 *https://electsmart.github.io/ElectSmartMaster/*
 
-## By entering address in the search, you will be able to obtain the following information 
+## By entering an address in the search, you will be able to obtain the following information 
 * Nearest early voting site (If available)
 * Nearert polling location
 * Federal and local election contests in your area 
@@ -22,8 +22,9 @@
 * Bootstrap
 * Javascript
 * JQuery
-* JSON/AJAX
-* JS library
+* AJAX
+* JSON
+* New CSS Framework (Spectre Icon Styling)
 * API Keys from two different sources
   * Google Civic
   * NewsAPI
