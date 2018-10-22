@@ -31,4 +31,10 @@ th {
 }
 footer {
     text-align: center;
+    background-color: navy;
+    color: white;
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 100%;
 }
