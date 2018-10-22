@@ -134,7 +134,7 @@ $(document).ready(function () {
                 // if early votesite is not available, the fill in polling location
                 if (typeof (polling) === "undefined" && polling1.length > 0) {
                     console.log("polling1");
-                    for (var l = 0; l < 2; l++) {
+                    for (var l = 0; l < 1; l++) {
                         var newpolling1 = polling1[l];
                         var pollingLocation = newpolling1.address.locationName + ", " + newpolling1.address.line1 +
                             ", " + newpolling1.address.city + ", " + newpolling1.address.state + ", " + newpolling1.address.zip;
@@ -177,7 +177,7 @@ $(document).ready(function () {
                         $("#polling-location").append(divPLocation);
                         $("#polling-hours").append(divPHours);
                     }
-                    for (var k = 0; k < 2; k++) {
+                    for (var k = 0; k < 1; k++) {
                         var newpolling = polling[k];
                         var voteSiteLocation = newpolling.address.locationName + ", " + newpolling.address.line1 +
                             ", " + newpolling.address.city + ", " + newpolling.address.state + ", " + newpolling.address.zip;
