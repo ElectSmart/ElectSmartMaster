@@ -18,11 +18,17 @@ body {
 }
 
 #elecRepInfo {
-  margin-left: -5px;
+  margin-left: -10px;
+}
+#arrow1 {
+  margin-left: -10px;
+}
+#arrow2 {
+  margin-left: -10px;
 }
 
 #candidateSearch {
-  margin-left: -5px;
+  margin-left: -10px;
 }
 
 th {

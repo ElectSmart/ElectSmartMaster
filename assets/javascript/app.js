@@ -172,7 +172,7 @@ $(document).ready(function () {
                         divPLocation.append(pollingLocation);
                         var divPHours = $("<div>").html("<b><i>Polling Hours: </i></b>");
                         divPHours.append(pollingHours);
-                        $("#polling-location").append(divPLocation, divPHours);                        $("#polling-hours").append(divPHours);
+                        $("#polling-location").append(divPLocation, divPHours); $("#polling-hours").append(divPHours);
                     }
                     for (var k = 0; k < 2; k++) {
                         var newpolling = polling[k];
@@ -460,38 +460,57 @@ $(document).ready(function () {
 
 // Toggle arrow icon to the left of the first accordion button 
 
- $("#elecRepInfo").on("click", function()
-{
+var arrow1 = $("#arrow1");
+var arrow2 = $("#arrow2");
+function toggleUp (element){
+    element.removeClass("icon-arrow-down");
+    element.addClass("icon-arrow-up")
+}
+function toggleDown (element){
+    element.removeClass("icon-arrow-up");
+    element.addClass("icon-arrow-down")
+}
+$("#elecRepInfo").on("click", function () {
+    //--- doing it using ternary----
+    var isCollapsed = $("#elecRepInfo").hasClass("collapsed");
+    function arrow1collapse(){
+        return isCollapsed ? toggleUp(arrow1)
+        : toggleDown(arrow1);
+    }
 
-
-  if  ( $( "#elecRepInfo" ).hasClass( "collapsed" ) )
-  {
-    // console.log("opening")
-    $("#arrow1").removeClass("icon-arrow-down");
-    $("#arrow1").addClass("icon-arrow-up");
-  }else {
-    //   console.log("closing");
-      $("#arrow1").removeClass("icon-arrow-up");
-      $("#arrow1").addClass("icon-arrow-down");
-  }
-
-
+    arrow1collapse ();
+    //----- doing it using if statement
+    // if ($("#elecRepInfo").hasClass("collapsed")) {
+    //     // console.log("opening")
+    //     $("#arrow1").removeClass("icon-arrow-down");
+    //     $("#arrow1").addClass("icon-arrow-up");
+    // } else {
+    //     //   console.log("closing");
+    //     $("#arrow1").removeClass("icon-arrow-up");
+    //     $("#arrow1").addClass("icon-arrow-down");
+    // }
 })
 
 // toggle arrow icon to the left of second accordion button 
 
-$("#candidateSearch").on("click", function()
-{ 
-  if ( $( "#candidateSearch" ).hasClass( "collapsed" ) )
-  {
-    // console.log("opening second accordion")
-    $("#arrow2").removeClass("icon-arrow-down");
-    $("#arrow2").addClass("icon-arrow-up");
-  }else {
-    //   console.log("closing second accordion");
-      $("#arrow2").removeClass("icon-arrow-up");
-      $("#arrow2").addClass("icon-arrow-down");
-  }
+$("#candidateSearch").on("click", function () {
+    //---doing it using ternary----
+    var isCollapsed = $("#candidateSearch").hasClass("collapsed");
+    function arrow2collapse(){
+        return isCollapsed ? toggleUp(arrow2)
+        : toggleDown(arrow2);
+    }
 
-
+    arrow2collapse ();
+    //---- doing it using If statement----
+    //   if ( $( "#candidateSearch" ).hasClass( "collapsed" ) )
+    //   {
+    //     // console.log("opening second accordion")
+    //     $("#arrow2").removeClass("icon-arrow-down");
+    //     $("#arrow2").addClass("icon-arrow-up");
+    //   }else {
+    //     //   console.log("closing second accordion");
+    //       $("#arrow2").removeClass("icon-arrow-up");
+    //       $("#arrow2").addClass("icon-arrow-down");
+    //   }
 })
