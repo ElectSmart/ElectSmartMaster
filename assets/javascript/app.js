@@ -482,9 +482,6 @@ $(document).ready(function () {
 
 $("#candidateSearch").on("click", function()
 { 
-    var isCollapsed = $( "#candidateSearch" ).hasClass( "collapsed" ); 
-
-
   if ( $( "#candidateSearch" ).hasClass( "collapsed" ) )
   {
     // console.log("opening second accordion")
