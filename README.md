@@ -6,12 +6,12 @@
 *https://electsmart.github.io/ElectSmartMaster/*
 
 ## By entering an address in the search, you will be able to obtain the following information 
-* Nearest early voting site (If available)
-* Nearert polling location
+* Nearest early voting site (if available)
+* Nearest polling location
 * Federal and local election contests in your area 
 * Candidates that run for each election in your area
   * Click candidate's name to directly send email to the candidate (if available)
-* Information about referrendum that you will vote (If available)
+* Information about referrendum that you will vote (if available)
 * Information about your current federal and local representatives
   * Click representative's name to access their website (if available)
 * Additional information about the candidate can be searched using our search engine
