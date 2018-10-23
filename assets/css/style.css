@@ -1,40 +1,42 @@
 body {
-  background-color: aliceblue;
-  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
-    "Lucida Sans Unicode", "Geneva", "Verdana", "sans-serif";
+background-color: aliceblue;
+font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', 'sans-serif';
 }
 .jumbotron {
-  background-image: url("../images/ElectSmart\ Logo-01.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-color: aliceblue;
-  background-size: cover;
-  opacity: 1;
-  margin-top: -80px;
+background-image:url("../images/ElectSmart\ Logo-01.jpg");
+background-position: center;
+background-repeat: no-repeat;
+background-color: aliceblue;
+background-size: cover;
+opacity: 1;
+margin-top: -80px;
 }
 
 .accordion {
-  margin-top: -25px;
+    margin-top: -25px;
 }
 
 #elecRepInfo {
-  margin-left: -5px;
+    margin-left: -5px;
 }
 
 #candidateSearch {
-  margin-left: -5px;
+    margin-left: -5px;
 }
 
 th {
-  background: navy;
-  color: white;
+
+    background: navy;
+    color: white;
 }
 footer {
-  text-align: center;
-  background-color: #031585;
-  color: white;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  padding-top: 10px;
+    text-align: center;
+    background-color: #031585;
+    min-height: 100%;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-template-columns: 100%;
+    font-display: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', 'Geneva', 'Verdana', 'sans-serif';
+    color: white;
+    padding-top: 10px;
 }
