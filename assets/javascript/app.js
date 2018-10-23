@@ -459,3 +459,43 @@ $(document).ready(function () {
     })
     //--------------------------------------------------------------------------------------
 })
+
+// Toggle arrow icon to the left of the first accordion button 
+
+ $("#elecRepInfo").on("click", function()
+{
+
+
+  if  ( $( "#elecRepInfo" ).hasClass( "collapsed" ) )
+  {
+    console.log("opening")
+    $("#arrow1").removeClass("icon-arrow-down");
+    $("#arrow1").addClass("icon-arrow-up");
+  }else {
+      console.log("closing");
+      $("#arrow1").removeClass("icon-arrow-up");
+      $("#arrow1").addClass("icon-arrow-down");
+  }
+
+
+})
+
+// toggle arrow icon to the left of second accordion button 
+
+$("#candidateSearch").on("click", function()
+{
+
+
+  if  ( $( "#candidateSearch" ).hasClass( "collapsed" ) )
+  {
+    console.log("opening second accordion")
+    $("#arrow2").removeClass("icon-arrow-down");
+    $("#arrow2").addClass("icon-arrow-up");
+  }else {
+      console.log("closing second accordion");
+      $("#arrow2").removeClass("icon-arrow-up");
+      $("#arrow2").addClass("icon-arrow-down");
+  }
+
+
+})
