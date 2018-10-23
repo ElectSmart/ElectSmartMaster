@@ -481,10 +481,11 @@ $(document).ready(function () {
 // toggle arrow icon to the left of second accordion button 
 
 $("#candidateSearch").on("click", function()
-{
+{ 
+    var isCollapsed = $( "#candidateSearch" ).hasClass( "collapsed" ); 
 
 
-  if  ( $( "#candidateSearch" ).hasClass( "collapsed" ) )
+  if ( $( "#candidateSearch" ).hasClass( "collapsed" ) )
   {
     // console.log("opening second accordion")
     $("#arrow2").removeClass("icon-arrow-down");
