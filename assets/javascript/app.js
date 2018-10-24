@@ -172,7 +172,7 @@ $(document).ready(function () {
                         divPLocation.append(pollingLocation);
                         var divPHours = $("<div>").html("<b><i>Polling Hours: </i></b>");
                         divPHours.append(pollingHours);
-                        $("#polling-location").append(divPLocation, divPHours); $("#polling-hours").append(divPHours);
+                        $("#polling-location").append(divPLocation, divPHours);
                     }
                     for (var k = 0; k < 2; k++) {
                         var newpolling = polling[k];
