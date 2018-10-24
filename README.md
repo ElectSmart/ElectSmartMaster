@@ -30,6 +30,9 @@
   * NewsAPI
 * Firebase
 
+## Presentation Slides
+https://docs.google.com/presentation/d/1VTrmX7fxme8FGC6Z7qpXMYVJh2GPzkchxoY1stn7F50/edit?usp=sharing 
+
 
 
 
